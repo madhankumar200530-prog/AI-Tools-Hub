@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tools Universe — Every Tool You Need</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07090f;
+    --surface: #0e1120;
+    --surface2: #151929;
+    --surface3: #1c2235;
+    --border: rgba(255,255,255,0.07);
+    --text: #e8eaf0;
+    --muted: #7a7f94;
+    --accent-builder: #6c47ff;
+    --accent-coder: #00d2ff;
+    --accent-fullstack: #ff6b35;
+    --accent-design: #ff2d78;
+    --accent-asset: #ffd23f;
+    --accent-backend: #27c96e;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-display); line-height: 1.6; overflow-x: hidden; }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.5;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 4rem 1.5rem 6rem; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 20% 30%, rgba(108,71,255,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 70%, rgba(0,210,255,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(255,45,120,0.08) 0%, transparent 60%);
+    animation: bgPulse 8s ease-in-out infinite alternate;
+  }
+  @keyframes bgPulse { 0% { opacity: 0.7; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 80%);
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(108,71,255,0.15); border: 1px solid rgba(108,71,255,0.4);
+    color: #a78bff; font-family: var(--font-mono); font-size: 0.75rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2rem; position: relative; z-index: 1;
+  }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; background: #a78bff; border-radius: 50%; animation: blink 1.5s ease infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+  .hero h1 { font-size: clamp(2.8rem, 7vw, 6rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; position: relative; z-index: 1; margin-bottom: 1.5rem; }
+  .hero h1 .line1 { display: block; color: var(--text); }
+  .hero h1 .line2 { display: block; background: linear-gradient(135deg, #6c47ff 0%, #00d2ff 40%, #ff2d78 80%, #ffd23f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 560px; position: relative; z-index: 1; margin-bottom: 2.5rem; }
+  .hero-stats { display: flex; gap: 2.5rem; justify-content: center; position: relative; z-index: 1; margin-bottom: 3rem; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-num { font-size: 2rem; font-weight: 700; font-family: var(--font-mono); background: linear-gradient(135deg, #6c47ff, #00d2ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* ── NAV ── */
+  .nav { position: sticky; top: 0; z-index: 100; background: rgba(7,9,15,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 0.75rem 1.5rem; }
+  .nav-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; overflow-x: auto; scrollbar-width: none; }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-brand { font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem; color: var(--text); white-space: nowrap; margin-right: 1rem; letter-spacing: -0.02em; }
+  .nav-pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.85rem; border-radius: 100px; font-size: 0.78rem; font-weight: 500; white-space: nowrap; cursor: pointer; text-decoration: none; border: 1px solid transparent; transition: all 0.2s; }
+  .nav-pill:hover { opacity: 0.85; transform: translateY(-1px); }
+  .pill-builder { background: rgba(108,71,255,0.15); color: #a78bff; border-color: rgba(108,71,255,0.3); }
+  .pill-coder   { background: rgba(0,210,255,0.12); color: #5ee7ff; border-color: rgba(0,210,255,0.3); }
+  .pill-full    { background: rgba(255,107,53,0.12); color: #ff9b70; border-color: rgba(255,107,53,0.3); }
+  .pill-design  { background: rgba(255,45,120,0.12); color: #ff6fa8; border-color: rgba(255,45,120,0.3); }
+  .pill-asset   { background: rgba(255,210,63,0.12); color: #ffe070; border-color: rgba(255,210,63,0.3); }
+  .pill-backend { background: rgba(39,201,110,0.12); color: #5bdf8c; border-color: rgba(39,201,110,0.3); }
+
+  /* ── MAIN ── */
+  .main { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem 6rem; }
+  .section { margin-bottom: 5rem; scroll-margin-top: 72px; }
+  .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .section-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+  .section-title-block { flex: 1; }
+  .section-eyebrow { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.25rem; }
+  .section-title { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+  .section-count { font-family: var(--font-mono); font-size: 0.75rem; padding: 0.3rem 0.75rem; border-radius: 100px; margin-left: auto; border: 1px solid var(--border); color: var(--muted); flex-shrink: 0; }
+
+  /* ── TOOL GRID ── */
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; }
+
+  .tool-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.1rem 1.2rem 1rem;
+    cursor: pointer; transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative; overflow: hidden; user-select: none;
+  }
+  .tool-card::before { content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s; border-radius: inherit; }
+  .tool-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.16); }
+  .tool-card:hover::before { opacity: 1; }
+  .tool-card:active { transform: translateY(-1px); }
+
+  .tool-card-inner { display: flex; flex-direction: column; gap: 0.3rem; }
+  .tool-name { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+  .tool-tag { font-family: var(--font-mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .tool-num { position: absolute; top: 0.75rem; right: 0.85rem; font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.12); }
+
+  .tool-click-hint {
+    display: flex; align-items: center; gap: 0.3rem;
+    font-size: 0.58rem; color: rgba(255,255,255,0.25); margin-top: 0.5rem;
+    font-family: var(--font-mono); letter-spacing: 0.05em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .tool-card:hover .tool-click-hint { color: rgba(255,255,255,0.45); }
+  .tool-click-hint svg { width: 8px; height: 8px; }
+
+  /* ── CATEGORY THEMES ── */
+  .cat-builder .section-icon { background: rgba(108,71,255,0.15); }
+  .cat-builder .section-eyebrow { color: #a78bff; }
+  .cat-builder .section-title { color: #c4b0ff; }
+  .cat-builder .tool-card:hover { box-shadow: 0 8px 32px rgba(108,71,255,0.2); border-color: rgba(108,71,255,0.35); }
+  .cat-builder .tool-card::before { background: linear-gradient(135deg, rgba(108,71,255,0.08), transparent); }
+  .cat-builder .tool-tag { color: rgba(167,139,255,0.7); }
+
+  .cat-coder .section-icon { background: rgba(0,210,255,0.12); }
+  .cat-coder .section-eyebrow { color: #5ee7ff; }
+  .cat-coder .section-title { color: #9bf0ff; }
+  .cat-coder .tool-card:hover { box-shadow: 0 8px 32px rgba(0,210,255,0.18); border-color: rgba(0,210,255,0.35); }
+  .cat-coder .tool-card::before { background: linear-gradient(135deg, rgba(0,210,255,0.07), transparent); }
+  .cat-coder .tool-tag { color: rgba(94,231,255,0.7); }
+
+  .cat-fullstack .section-icon { background: rgba(255,107,53,0.12); }
+  .cat-fullstack .section-eyebrow { color: #ff9b70; }
+  .cat-fullstack .section-title { color: #ffbea0; }
+  .cat-fullstack .tool-card:hover { box-shadow: 0 8px 32px rgba(255,107,53,0.18); border-color: rgba(255,107,53,0.35); }
+  .cat-fullstack .tool-card::before { background: linear-gradient(135deg, rgba(255,107,53,0.07), transparent); }
+  .cat-fullstack .tool-tag { color: rgba(255,155,112,0.7); }
+
+  .cat-design .section-icon { background: rgba(255,45,120,0.12); }
+  .cat-design .section-eyebrow { color: #ff6fa8; }
+  .cat-design .section-title { color: #ffa8cb; }
+  .cat-design .tool-card:hover { box-shadow: 0 8px 32px rgba(255,45,120,0.18); border-color: rgba(255,45,120,0.35); }
+  .cat-design .tool-card::before { background: linear-gradient(135deg, rgba(255,45,120,0.07), transparent); }
+  .cat-design .tool-tag { color: rgba(255,111,168,0.7); }
+
+  .cat-asset .section-icon { background: rgba(255,210,63,0.12); }
+  .cat-asset .section-eyebrow { color: #ffe070; }
+  .cat-asset .section-title { color: #ffefb0; }
+  .cat-asset .tool-card:hover { box-shadow: 0 8px 32px rgba(255,210,63,0.18); border-color: rgba(255,210,63,0.35); }
+  .cat-asset .tool-card::before { background: linear-gradient(135deg, rgba(255,210,63,0.07), transparent); }
+  .cat-asset .tool-tag { color: rgba(255,224,112,0.7); }
+
+  .cat-backend .section-icon { background: rgba(39,201,110,0.12); }
+  .cat-backend .section-eyebrow { color: #5bdf8c; }
+  .cat-backend .section-title { color: #9eedb8; }
+  .cat-backend .tool-card:hover { box-shadow: 0 8px 32px rgba(39,201,110,0.18); border-color: rgba(39,201,110,0.35); }
+  .cat-backend .tool-card::before { background: linear-gradient(135deg, rgba(39,201,110,0.07), transparent); }
+  .cat-backend .tool-tag { color: rgba(91,223,140,0.7); }
+
+  /* ── TOP 20 ── */
+  .top20-section { background: linear-gradient(135deg, rgba(108,71,255,0.1), rgba(0,210,255,0.08), rgba(255,45,120,0.08)); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 2.5rem; margin-bottom: 5rem; }
+  .top20-header { text-align: center; margin-bottom: 2rem; }
+  .top20-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, rgba(108,71,255,0.2), rgba(255,45,120,0.2)); border: 1px solid rgba(255,255,255,0.12); padding: 0.4rem 1.1rem; border-radius: 100px; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: #d0b8ff; margin-bottom: 1rem; }
+  .top20-title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; letter-spacing: -0.025em; background: linear-gradient(135deg, #fff 0%, #c4b0ff 50%, #9bf0ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
+  .top20-sub { color: var(--muted); font-size: 0.9rem; }
+  .top20-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.75rem; }
+  .top20-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1rem 1.1rem; display: flex; align-items: center; gap: 0.75rem; transition: all 0.2s; cursor: pointer; }
+  .top20-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(108,71,255,0.15); border-color: rgba(255,255,255,0.15); }
+  .top20-rank { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); min-width: 24px; }
+  .top20-name { font-size: 0.88rem; font-weight: 600; }
+
+  /* ── SEARCH ── */
+  .search-wrap { max-width: 500px; margin: 0 auto 4rem; position: relative; }
+  .search-input { width: 100%; background: var(--surface); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: var(--text); font-family: var(--font-display); font-size: 0.95rem; padding: 0.85rem 1rem 0.85rem 3rem; outline: none; transition: border-color 0.2s; }
+  .search-input::placeholder { color: var(--muted); }
+  .search-input:focus { border-color: rgba(108,71,255,0.5); box-shadow: 0 0 0 3px rgba(108,71,255,0.1); }
+  .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 1rem; pointer-events: none; }
+  .search-count { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(7,9,15,0.82); backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: var(--surface2);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 24px;
+    max-width: 520px; width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s;
+    opacity: 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.1) transparent;
+  }
+  .modal-overlay.open .modal { transform: translateY(0) scale(1); opacity: 1; }
+
+  .modal-header {
+    padding: 1.75rem 1.75rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0;
+    background: var(--surface2);
+    backdrop-filter: blur(8px);
+    border-radius: 24px 24px 0 0;
+    z-index: 2;
+  }
+  .modal-close {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    width: 32px; height: 32px; border-radius: 8px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    color: var(--muted); cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.12); color: var(--text); }
+
+  .modal-category-badge {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-family: var(--font-mono); font-size: 0.65rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.25rem 0.7rem; border-radius: 100px;
+    margin-bottom: 0.75rem; border: 1px solid;
+  }
+  .modal-name { font-size: 1.65rem; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 0.25rem; }
+  .modal-tagline { font-size: 0.85rem; color: var(--muted); }
+
+  .modal-body { padding: 1.5rem 1.75rem 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .modal-section-label {
+    font-family: var(--font-mono); font-size: 0.62rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.5rem;
+  }
+  .modal-desc { font-size: 0.9rem; color: rgba(232,234,240,0.85); line-height: 1.65; }
+
+  .modal-use-cases { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.1rem; }
+  .use-case-chip {
+    font-size: 0.74rem; padding: 0.28rem 0.7rem; border-radius: 100px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(232,234,240,0.75);
+  }
+
+  .modal-pricing {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 1rem 1.1rem; border-radius: 12px;
+    border: 1px solid;
+  }
+  .pricing-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .pricing-label { font-size: 0.7rem; font-family: var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.15rem; }
+  .pricing-detail { font-size: 0.85rem; font-weight: 500; }
+
+  .pricing-free { background: rgba(39,201,110,0.08); border-color: rgba(39,201,110,0.25); }
+  .pricing-free .pricing-label { color: #5bdf8c; }
+  .pricing-free .pricing-detail { color: #9eedb8; }
+
+  .pricing-freemium { background: rgba(0,210,255,0.08); border-color: rgba(0,210,255,0.25); }
+  .pricing-freemium .pricing-label { color: #5ee7ff; }
+  .pricing-freemium .pricing-detail { color: #9bf0ff; }
+
+  .pricing-paid { background: rgba(255,210,63,0.08); border-color: rgba(255,210,63,0.25); }
+  .pricing-paid .pricing-label { color: #ffe070; }
+  .pricing-paid .pricing-detail { color: #ffefb0; }
+
+  .pricing-enterprise { background: rgba(108,71,255,0.08); border-color: rgba(108,71,255,0.25); }
+  .pricing-enterprise .pricing-label { color: #a78bff; }
+  .pricing-enterprise .pricing-detail { color: #c4b0ff; }
+
+  .modal-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.65rem 1.25rem; border-radius: 10px;
+    font-size: 0.82rem; font-weight: 600;
+    text-decoration: none; border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06); color: var(--text);
+    transition: all 0.2s; align-self: flex-start;
+  }
+  .modal-link:hover { background: rgba(255,255,255,0.1); transform: translateX(2px); }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; text-align: center; color: var(--muted); font-size: 0.82rem; }
+  footer span { background: linear-gradient(135deg, #6c47ff, #00d2ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
+
+  /* ── SCROLL TOP ── */
+  .scroll-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 12px; background: var(--surface2); border: 1px solid var(--border); color: var(--text); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(10px); transition: all 0.25s; z-index: 50; }
+  .scroll-top.visible { opacity: 1; transform: translateY(0); }
+  .scroll-top:hover { background: rgba(108,71,255,0.2); border-color: rgba(108,71,255,0.4); }
+
+  .tool-card.hidden { display: none; }
+
+  @media (max-width: 600px) {
+    .tools-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    .top20-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    .hero-stats { gap: 1.5rem; }
+    .top20-section { padding: 1.5rem; }
+    .modal { border-radius: 20px; }
+    .modal-header { padding: 1.4rem 1.4rem 1rem; }
+    .modal-body { padding: 1.25rem 1.4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-tag">✦ 2026 Edition</div>
+  <h1>
+    <span class="line1">The Complete</span>
+    <span class="line2">AI Tools Universe</span>
+  </h1>
+  <p class="hero-sub">300+ curated AI tools for building websites — from idea to live product. Click any tool to learn more.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">300+</div><div class="stat-label">AI Tools</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Categories</div></div>
+    <div class="stat"><div class="stat-num">20</div><div class="stat-label">Top Picks</div></div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">⊹ AI Tools</span>
+    <a href="#builders"  class="nav-pill pill-builder">🏗 Builders</a>
+    <a href="#coders"    class="nav-pill pill-coder">💻 Coders</a>
+    <a href="#fullstack" class="nav-pill pill-full">⚡ Full-Stack</a>
+    <a href="#design"    class="nav-pill pill-design">🎨 UI/UX</a>
+    <a href="#assets"    class="nav-pill pill-asset">🖼 Assets</a>
+    <a href="#backend"   class="nav-pill pill-backend">🛢 Backend</a>
+    <a href="#top20"     class="nav-pill" style="background:rgba(255,255,255,0.06);color:var(--text);border-color:var(--border);">⭐ Top 20</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" type="text" id="searchInput" placeholder="Search any tool…" autocomplete="off">
+    <span class="search-count" id="searchCount"></span>
+  </div>
+
+  <section id="builders" class="section cat-builder">
+    <div class="section-header">
+      <div class="section-icon">🏗</div>
+      <div class="section-title-block">
+        <div class="section-eyebrow">Category 01</div>
+        <div class="section-title">AI Website Builders</div>
+      </div>
+      <div class="section-count">50 tools</div>
+    </div>
+    <div class="tools-grid" id="grid-builders"></div>
+  </section>
+
+  <section id="coders" class="section cat-coder">
+    <div class="section-header">
+      <div class="section-icon">💻</div>
+      <div class="section-title-block">
+        <div class="section-eyebrow">Category 02</div>
+        <div class="section-title">AI Coding Assistants</div>
+      </div>
+      <div class="section-count">50 tools</div>
+    </div>
+    <div class="tools-grid" id="grid-coders"></div>
+  </section>
+
+  <section id="fullstack" class="section cat-fullstack">
+    <div class="section-header">
+      <div class="section-icon">⚡</div>
+      <div class="section-title-block">
+        <div class="section-eyebrow">Category 03</div>
+        <div class="section-title">AI Full-Stack App Builders</div>
+      </div>
+      <div class="section-count">50 tools</div>
+    </div>
+    <div class="tools-grid" id="grid-fullstack"></div>
+  </section>
+
+  <section id="design" class="section cat-design">
+    <div class="section-header">
+      <div class="section-icon">🎨</div>
+      <div class="section-title-block">
+        <div class="section-eyebrow">Category 04</div>
+        <div class="section-title">AI UI/UX Design Tools</div>
+      </div>
+      <div class="section-count">50 tools</div>
+    </div>
+    <div class="tools-grid" id="grid-design"></div>
+  </section>
+
+  <section id="assets" class="section cat-asset">
+    <div class="section-header">
+      <div class="section-icon">🖼</div>
+      <div class="section-title-block">
+        <div class="section-eyebrow">Category 05</div>
+        <div class="section-title">AI Image, Logo & Asset Generators</div>
+      </div>
+      <div class="section-count">50 tools</div>
+    </div>
+    <div class="tools-grid" id="grid-assets"></div>
+  </section>
+
+  <section id="backend" class="section cat-backend">
+    <div class="section-header">
+      <div class="section-icon">🛢</div>
+      <div class="section-title-block">
+        <div class="section-eyebrow">Category 06</div>
+        <div class="section-title">AI Backend & Database Tools</div>
+      </div>
+      <div class="section-count">50 tools</div>
+    </div>
+    <div class="tools-grid" id="grid-backend"></div>
+  </section>
+
+  <section id="top20" class="top20-section">
+    <div class="top20-header">
+      <div class="top20-badge">★ Editor's Pick</div>
+      <h2 class="top20-title">Top 20 Most Powerful AI Tools for 2026</h2>
+      <p class="top20-sub">Idea → Design → Code → Database → Deploy → App — without a large team.</p>
+    </div>
+    <div class="top20-grid" id="grid-top20"></div>
+  </section>
+</main>
+
+<footer>
+  <p>Built for builders. Curated for <span>AI-First Development</span> in 2026.</p>
+  <p style="margin-top:0.5rem;opacity:0.5">300+ tools across 6 categories · Click any card for details · No login required</p>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header" id="modalHeader">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-category-badge" id="modalBadge"></div>
+      <div class="modal-name" id="modalName"></div>
+      <div class="modal-tagline" id="modalTagline"></div>
+    </div>
+    <div class="modal-body">
+      <div>
+        <div class="modal-section-label">About</div>
+        <div class="modal-desc" id="modalDesc"></div>
+      </div>
+      <div>
+        <div class="modal-section-label">Best For</div>
+        <div class="modal-use-cases" id="modalUseCases"></div>
+      </div>
+      <div>
+        <div class="modal-section-label">Pricing</div>
+        <div class="modal-pricing" id="modalPricing">
+          <div class="pricing-icon" id="modalPricingIcon"></div>
+          <div>
+            <div class="pricing-label" id="modalPricingLabel"></div>
+            <div class="pricing-detail" id="modalPricingDetail"></div>
+          </div>
+        </div>
+      </div>
+      <a class="modal-link" id="modalLink" target="_blank" rel="noopener">
+        Visit Official Site →
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─────────────────────────────────────
+   TOOL DETAILS DATABASE
+   format: name → { desc, uses[], pricing, pricingDetail, link, pricingType }
+   pricingType: free | freemium | paid | enterprise
+───────────────────────────────────── */
+const DETAILS = {
+  // ── BUILDERS ──
+  "Wix AI":           { desc: "Wix is one of the world's leading website builders, now supercharged with an AI assistant that generates a full site from a text prompt. It handles layout, copy, images, and SEO automatically — ideal for non-coders who want a professional result fast.", uses: ["Small business sites","Portfolios","Online stores","Event pages"], pricing: "Freemium", pricingDetail: "Free plan available; paid plans from ~$17/mo", pricingType: "freemium", link: "https://wix.com" },
+  "Framer AI":        { desc: "Framer AI is a powerful visual builder loved by designers. It generates beautiful, responsive websites from text prompts and lets you fine-tune every pixel. It exports clean code and integrates with design systems seamlessly.", uses: ["Startup landing pages","Portfolio sites","SaaS marketing pages"], pricing: "Freemium", pricingDetail: "Free tier; paid from $5/mo", pricingType: "freemium", link: "https://framer.com" },
+  "Durable":          { desc: "Durable claims to build a full business website in 30 seconds using AI. It generates copy, images, and contact forms based on your industry — then you can tweak the result. It also includes a basic CRM.", uses: ["Local businesses","Freelancers","Service providers"], pricing: "Freemium", pricingDetail: "Free trial; from $12/mo", pricingType: "freemium", link: "https://durable.co" },
+  "10Web":            { desc: "10Web is an AI-powered WordPress platform that generates complete sites from a prompt and hosts them on Google Cloud. It includes page-speed optimization and an AI assistant for ongoing edits.", uses: ["WordPress sites","Agency clients","E-commerce"], pricing: "Freemium", pricingDetail: "Free trial; paid from $10/mo", pricingType: "freemium", link: "https://10web.io" },
+  "Hostinger AI Builder": { desc: "Hostinger's AI website builder is bundled with their hosting plans. It generates a full site from a business description and includes AI-written content, a logo maker, and one-click publishing.", uses: ["Small business sites","Blogs","Simple stores"], pricing: "Paid", pricingDetail: "From ~$2.49/mo (bundled with hosting)", pricingType: "paid", link: "https://hostinger.com/ai-website-builder" },
+  "Webflow AI":       { desc: "Webflow is the professional's no-code web builder, now with AI features for copy generation and layout suggestions. It gives designers full visual control while outputting production-quality HTML/CSS.", uses: ["Agency websites","SaaS marketing","Interactive portfolios"], pricing: "Freemium", pricingDetail: "Free for 2 projects; paid from $14/mo", pricingType: "freemium", link: "https://webflow.com" },
+  "Squarespace AI":   { desc: "Squarespace's AI tools help you write content, generate images, and build websites with a clean, polished aesthetic. The platform is especially popular among creatives and portfolio owners.", uses: ["Creative portfolios","Online stores","Restaurant/service sites"], pricing: "Paid", pricingDetail: "From $16/mo (no free plan)", pricingType: "paid", link: "https://squarespace.com" },
+  "Jimdo AI":         { desc: "Jimdo uses AI (called Dolphin) to create a tailored website in minutes by asking you a few questions about your business. It's very beginner-friendly with simple customization options.", uses: ["Micro-businesses","Freelancers","Simple landing pages"], pricing: "Freemium", pricingDetail: "Free plan available; paid from $9/mo", pricingType: "freemium", link: "https://jimdo.com" },
+  "B12":              { desc: "B12 builds professional websites for service businesses using AI combined with human experts. It generates an initial draft from your domain or description, then designers review and refine it.", uses: ["Consultants","Law firms","Coaches","Professional services"], pricing: "Freemium", pricingDetail: "Free draft; paid from $42/mo", pricingType: "freemium", link: "https://b12.io" },
+  "Hocoos":           { desc: "Hocoos AI website builder creates a full website in minutes by asking simple questions about your business. It includes AI-generated content, images, and a built-in online store.", uses: ["Small businesses","Local shops","Startups"], pricing: "Freemium", pricingDetail: "Free plan; paid from $4.99/mo", pricingType: "freemium", link: "https://hocoos.com" },
+  "Zyro":             { desc: "Zyro (now part of Hostinger) is an e-commerce-focused AI builder. It includes an AI heatmap tool and AI copywriter to help you optimize your store for conversions.", uses: ["E-commerce","Dropshipping","Product pages"], pricing: "Paid", pricingDetail: "From $2.61/mo", pricingType: "paid", link: "https://zyro.com" },
+  "Bookmark AiDA":    { desc: "Bookmark's AiDA (Artificial Intelligence Design Assistant) creates a unique website in 2 minutes after asking 3 questions. It learns your preferences and continuously improves your site.", uses: ["Any business type","Personal sites","Portfolios"], pricing: "Freemium", pricingDetail: "Free plan; paid from $6.99/mo", pricingType: "freemium", link: "https://bookmark.com" },
+  "Site123 AI":       { desc: "Site123 is a simple drag-and-drop builder with AI assistance for content creation. It offers 250+ templates and is known for its beginner-friendly interface and fast setup.", uses: ["Beginners","Simple business sites","Landing pages"], pricing: "Freemium", pricingDetail: "Free plan; paid from $5.80/mo", pricingType: "freemium", link: "https://site123.com" },
+  "TeleportHQ":       { desc: "TeleportHQ lets you build UIs visually and export production-ready HTML/CSS/React code. It also supports AI-powered screen-to-code conversion.", uses: ["Developers","Designers","Code export projects"], pricing: "Freemium", pricingDetail: "Free plan; paid from $9/mo", pricingType: "freemium", link: "https://teleporthq.io" },
+  "Unicorn Platform":  { desc: "Unicorn Platform is an AI-powered landing page builder for startups and indie makers. Generate a full landing page from a product description and publish in minutes.", uses: ["SaaS landing pages","Startup MVPs","Product launches"], pricing: "Freemium", pricingDetail: "Free plan; paid from $8/mo", pricingType: "freemium", link: "https://unicornplatform.com" },
+  "Mixo":             { desc: "Mixo generates a full startup landing page — including copy, images, and a waitlist form — from a single sentence. It's designed specifically for validating startup ideas fast.", uses: ["MVP validation","Waitlist pages","Startup ideas"], pricing: "Freemium", pricingDetail: "Free plan; paid from $9/mo", pricingType: "freemium", link: "https://mixo.io" },
+  "Typedream":        { desc: "Typedream is a Notion-like no-code website builder with a clean, minimal design system. It's perfect for simple websites and portfolios that need a polished, modern look.", uses: ["Personal websites","Minimal portfolios","Product pages"], pricing: "Freemium", pricingDetail: "Free plan; paid from $8/mo", pricingType: "freemium", link: "https://typedream.com" },
+  "Dorik AI":         { desc: "Dorik is an agency-focused website builder with a white-label option and AI content generation. It's great for building client sites at scale.", uses: ["Digital agencies","Client websites","White-label projects"], pricing: "Paid", pricingDetail: "From $39/mo (lifetime deals available)", pricingType: "paid", link: "https://dorik.com" },
+  "Butternut AI":     { desc: "Butternut AI generates a complete website in seconds from a business description. It includes AI copy, images, and a contact form — just describe your business and you're live.", uses: ["Quick business websites","Local businesses","Instant presence"], pricing: "Freemium", pricingDetail: "Free plan; paid from $12.99/mo", pricingType: "freemium", link: "https://butternut.ai" },
+  "Gamma Sites":      { desc: "Gamma is known for AI presentations but also builds website-style docs and web pages. It's great for content-heavy pages that blend presentation and site functionality.", uses: ["Content pages","Pitch-style sites","Docs as websites"], pricing: "Freemium", pricingDetail: "Free plan; Pro from $10/mo", pricingType: "freemium", link: "https://gamma.app" },
+  "Pineapple Builder": { desc: "Pineapple Builder is tailored for indie developers and makers. It generates a full product or portfolio site from a description, with a clean minimal aesthetic.", uses: ["Indie hackers","Side project pages","Developer portfolios"], pricing: "Freemium", pricingDetail: "Free plan; paid from $9/mo", pricingType: "freemium", link: "https://pineapplebuilder.com" },
+  "Relume":           { desc: "Relume is a Webflow component library supercharged with AI. It generates full site sitemaps and wireframes from a prompt, then turns them into Webflow-ready components.", uses: ["Webflow projects","Agency planning","Rapid prototyping"], pricing: "Freemium", pricingDetail: "Free plan; paid from $38/mo", pricingType: "freemium", link: "https://relume.io" },
+  "Elementor AI":     { desc: "Elementor is the #1 WordPress page builder, used on over 10M sites. Its AI features help write copy, generate images, and suggest layout improvements — all within the familiar Elementor editor.", uses: ["WordPress sites","WooCommerce stores","Marketing pages"], pricing: "Freemium", pricingDetail: "Free plugin; Pro from $59/yr", pricingType: "freemium", link: "https://elementor.com" },
+  "Divi AI":          { desc: "Divi AI is built into the Divi WordPress theme and generates entire page sections — layouts, text, and images — from a natural-language prompt. It speeds up WordPress development dramatically.", uses: ["WordPress design","Client projects","Content-heavy sites"], pricing: "Paid", pricingDetail: "From $89/yr (includes Divi theme)", pricingType: "paid", link: "https://elegantthemes.com/gallery/divi" },
+  "GoDaddy AI Websites": { desc: "GoDaddy's AI builder creates a site from your business type and description, including content and images. It's tightly integrated with GoDaddy's hosting, email, and domain services.", uses: ["New businesses","Simple business sites","Hosting bundle projects"], pricing: "Freemium", pricingDetail: "Free trial; paid from $6.99/mo", pricingType: "freemium", link: "https://godaddy.com/websites/website-builder" },
+  "Carrd AI":         { desc: "Carrd is a beloved simple one-page site builder for personal pages, portfolios, and landing pages. It's ultra-lightweight, fast, and very affordable with AI content hints.", uses: ["Personal landing pages","Link-in-bio sites","Simple portfolios"], pricing: "Freemium", pricingDetail: "Free forever; Pro from $19/yr", pricingType: "freemium", link: "https://carrd.co" },
+  "Softr":            { desc: "Softr lets you build powerful web apps and portals on top of Airtable or Google Sheets without coding. Great for client portals, internal tools, and membership sites.", uses: ["Client portals","Internal tools","Membership sites"], pricing: "Freemium", pricingDetail: "Free plan; paid from $49/mo", pricingType: "freemium", link: "https://softr.io" },
+  "Glide":            { desc: "Glide turns your Google Sheets or Airtable data into apps and websites. The AI assistant helps build data-driven tools without any coding.", uses: ["Field apps","Internal tools","Data apps"], pricing: "Freemium", pricingDetail: "Free plan; paid from $49/mo", pricingType: "freemium", link: "https://glideapps.com" },
+  "Landingsite AI":   { desc: "Landingsite AI generates complete landing pages with copy, design, and sections from a product description. It focuses specifically on high-converting marketing pages.", uses: ["Marketing campaigns","Product launches","Lead generation"], pricing: "Freemium", pricingDetail: "Free plan; paid from $9/mo", pricingType: "freemium", link: "https://landingsite.ai" },
+  "Weblium":          { desc: "Weblium is an agency-oriented builder with AI content generation. It has a clean editor, 250+ templates, and built-in analytics for tracking page performance.", uses: ["Agency projects","Service business sites","Corporate pages"], pricing: "Freemium", pricingDetail: "Free plan; paid from $8.25/mo", pricingType: "freemium", link: "https://weblium.com" },
+  "Tilda AI":         { desc: "Tilda is an editorial and design-focused website builder known for stunning visual storytelling. Its AI helps with copy and layout selection from its massive block library.", uses: ["Editorial sites","Long-form content","Brand storytelling","Magazine-style sites"], pricing: "Freemium", pricingDetail: "Free plan (limited); paid from $10/mo", pricingType: "freemium", link: "https://tilda.cc" },
+  "Leia AI":          { desc: "Leia AI creates smart, responsive website layouts from a prompt, focusing on smart content placement and structure for professional-looking results with minimal effort.", uses: ["Quick websites","Content-heavy pages","Business sites"], pricing: "Freemium", pricingDetail: "Free tier available; paid plans vary", pricingType: "freemium", link: "https://leia.io" },
+  "Yola AI":          { desc: "Yola offers a simple AI-assisted website builder for small businesses and nonprofits. It has a straightforward drag-and-drop interface with AI content suggestions.", uses: ["Nonprofits","Small businesses","Community sites"], pricing: "Freemium", pricingDetail: "Free plan; paid from $6.95/mo", pricingType: "freemium", link: "https://yola.com" },
+  "Appy Pie Website": { desc: "Appy Pie's AI website maker lets you build a website by chatting with an AI. It can also create matching mobile apps, making it useful for businesses wanting both web and mobile presence.", uses: ["Web + mobile presence","Small businesses","Service businesses"], pricing: "Freemium", pricingDetail: "Free plan; paid from $6/mo", pricingType: "freemium", link: "https://appypie.com/website-builder" },
+  "Renderforest AI":  { desc: "Renderforest is a brand-building platform with AI website creation, video making, and logo design. It's ideal for creating a full brand identity in one place.", uses: ["Brand building","Business websites","Intros & animations"], pricing: "Freemium", pricingDetail: "Free plan; paid from $9.99/mo", pricingType: "freemium", link: "https://renderforest.com" },
+  "Mobirise AI":      { desc: "Mobirise is a desktop app (offline) for building mobile-friendly websites without coding. Its AI assistant helps generate content and suggests blocks. You host the output yourself.", uses: ["Offline site building","Mobile-first sites","Self-hosting"], pricing: "Freemium", pricingDetail: "Free app; paid extensions from ~$149/yr", pricingType: "freemium", link: "https://mobirise.com" },
+  "Duda AI":          { desc: "Duda is an agency-grade website platform with AI tools for content generation, personalization, and client management. It's built for agencies managing many client sites.", uses: ["Digital agencies","Multi-site management","Resellers"], pricing: "Paid", pricingDetail: "From $19/mo", pricingType: "paid", link: "https://duda.co" },
+  "Simvoly":          { desc: "Simvoly is a website and funnel builder with AI assistance. It's particularly strong for building sales funnels, membership sites, and e-commerce flows.", uses: ["Sales funnels","Membership sites","E-commerce funnels"], pricing: "Paid", pricingDetail: "From $12/mo", pricingType: "paid", link: "https://simvoly.com" },
+  "SeedProd AI":      { desc: "SeedProd is a WordPress-specific landing page and website builder with AI content generation. It's fast, SEO-friendly, and works with any WordPress theme.", uses: ["WordPress landing pages","Coming-soon pages","Sales pages"], pricing: "Paid", pricingDetail: "From $39.50/yr", pricingType: "paid", link: "https://seedprod.com" },
+  "Brizy AI":         { desc: "Brizy is a WordPress and cloud page builder with an intuitive editor and AI content tools. It has a white-label program making it popular among agencies.", uses: ["WordPress sites","Agency white-label","Landing pages"], pricing: "Freemium", pricingDetail: "Free WordPress plugin; paid from $49/yr", pricingType: "freemium", link: "https://brizy.io" },
+  "Ucraft AI":        { desc: "Ucraft is a multilingual website builder with AI-powered design and content tools. It supports 30+ languages and has built-in e-commerce capabilities.", uses: ["Multilingual sites","International stores","Brand sites"], pricing: "Freemium", pricingDetail: "Free plan; paid from $10/mo", pricingType: "freemium", link: "https://ucraft.com" },
+  "Webnode AI":       { desc: "Webnode is available in 20+ languages and helps users build multilingual websites with AI content assistance. Popular in Europe and Latin America.", uses: ["Multilingual websites","International presence","Simple sites"], pricing: "Freemium", pricingDetail: "Free plan; paid from $3.90/mo", pricingType: "freemium", link: "https://webnode.com" },
+  "Zarla":            { desc: "Zarla is a free AI website builder tailored for local businesses. You enter your business name and type, and it generates a complete site instantly with local SEO in mind.", uses: ["Local businesses","Brick-and-mortar shops","Service providers"], pricing: "Free", pricingDetail: "Completely free to use", pricingType: "free", link: "https://zarla.com" },
+  "Stunning.so":      { desc: "Stunning.so helps you build beautiful newsletter sites and landing pages powered by AI. It's popular among solo creators and newsletter authors wanting a minimal, fast site.", uses: ["Newsletter sites","Creator pages","Personal brands"], pricing: "Freemium", pricingDetail: "Free plan; paid from $9/mo", pricingType: "freemium", link: "https://stunning.so" },
+  "Sitekick":         { desc: "Sitekick AI uses GPT-4 to write compelling copy and build a landing page from a product description. It focuses on conversion-optimized, beautiful one-pagers.", uses: ["Product launches","Startup landing pages","Lead gen pages"], pricing: "Paid", pricingDetail: "From $10/mo", pricingType: "paid", link: "https://sitekick.ai" },
+  "Builder.ai":       { desc: "Builder.ai is an enterprise platform that uses AI to scope, build, and maintain software products. You describe your app idea, and it generates a development plan with human engineers executing it.", uses: ["Enterprise apps","Product development","Non-technical founders"], pricing: "Enterprise", pricingDetail: "Custom pricing; starts around $450/project", pricingType: "enterprise", link: "https://builder.ai" },
+  "Lindo AI":         { desc: "Lindo AI specializes in micro-sites and single-page apps generated from a text description. It's fast, minimal, and focuses on clean, professional output.", uses: ["Micro-sites","Quick landing pages","Personal pages"], pricing: "Freemium", pricingDetail: "Free plan; paid from $7/mo", pricingType: "freemium", link: "https://lindo.ai" },
+  "Ycode AI":         { desc: "Ycode is a visual development platform where you can build dynamic, data-driven websites without coding. Its AI features help with content generation and layout suggestions.", uses: ["Dynamic websites","Data-driven sites","Developer-adjacent builders"], pricing: "Freemium", pricingDetail: "Free plan; paid from $15/mo", pricingType: "freemium", link: "https://ycode.com" },
+  "Studio Design AI": { desc: "Studio Design AI is a brand-focused builder that combines AI design suggestions with a clean visual editor. It's especially good for agencies needing high-quality client site designs.", uses: ["Brand sites","Agency clients","Creative businesses"], pricing: "Freemium", pricingDetail: "Free plan; paid from $12/mo", pricingType: "freemium", link: "https://studio.design" },
+
+  // ── CODERS ──
+  "ChatGPT":          { desc: "ChatGPT by OpenAI is the world's most popular AI chatbot and coding assistant. It can write, explain, debug, and refactor code across virtually every programming language. GPT-4o powers real-time multimodal interactions.", uses: ["Code generation","Debugging","Explanations","Learning to code"], pricing: "Freemium", pricingDetail: "Free (GPT-4o); Plus $20/mo for higher limits", pricingType: "freemium", link: "https://chatgpt.com" },
+  "Claude":           { desc: "Claude by Anthropic is known for its long context window, thoughtful reasoning, and excellent code quality. It's particularly strong at understanding large codebases, refactoring, and writing clean, well-documented code.", uses: ["Complex code review","Long context code","Architecture planning","Documentation"], pricing: "Freemium", pricingDetail: "Free tier; Pro $20/mo", pricingType: "freemium", link: "https://claude.ai" },
+  "Gemini":           { desc: "Google's Gemini AI is deeply integrated into Google Workspace and Android. The 1.5 Pro and 2.0 models excel at code generation, with a massive 1M token context window for processing entire codebases.", uses: ["Google ecosystem coding","Data science","Multi-modal code tasks"], pricing: "Freemium", pricingDetail: "Free via Google; Advanced $19.99/mo", pricingType: "freemium", link: "https://gemini.google.com" },
+  "GitHub Copilot":   { desc: "GitHub Copilot is the original AI coding assistant, trained on billions of lines of code. It integrates directly into VS Code, JetBrains, and other IDEs to suggest completions and entire functions as you type.", uses: ["Real-time code completion","VS Code / JetBrains","All languages"], pricing: "Freemium", pricingDetail: "Free for students/OS maintainers; $10/mo individual", pricingType: "freemium", link: "https://github.com/features/copilot" },
+  "Cursor":           { desc: "Cursor is an AI-first code editor (fork of VS Code) where AI assistance is native and deeply integrated. Its Composer feature can make multi-file edits, and it supports any model including Claude and GPT-4o.", uses: ["Full AI code editing","Multi-file refactoring","Large codebase work"], pricing: "Freemium", pricingDetail: "Free plan (limited); Pro $20/mo", pricingType: "freemium", link: "https://cursor.com" },
+  "Windsurf":         { desc: "Windsurf (by Codeium) is an AI-powered code editor that emphasizes flow state coding. Its Cascade feature understands full project context and autonomously completes multi-step coding tasks.", uses: ["Agentic coding","Flow state development","Full project context"], pricing: "Freemium", pricingDetail: "Free plan; Pro $15/mo", pricingType: "freemium", link: "https://codeium.com/windsurf" },
+  "Codeium":          { desc: "Codeium is a free GitHub Copilot alternative that works in 40+ editors including VS Code, JetBrains, and Vim. It's fast, privacy-friendly, and excellent for teams that don't want to pay per-seat fees.", uses: ["Free code completion","Multi-editor support","Teams on a budget"], pricing: "Freemium", pricingDetail: "Free for individuals; Teams $12/user/mo", pricingType: "freemium", link: "https://codeium.com" },
+  "Tabnine":          { desc: "Tabnine is an AI coding assistant focused on enterprise privacy and security. It can run fully on-premise, trains on your private codebase, and ensures code never leaves your infrastructure.", uses: ["Enterprise teams","Private codebase training","On-premise AI"], pricing: "Freemium", pricingDetail: "Free plan; Pro $12/mo; Enterprise pricing custom", pricingType: "freemium", link: "https://tabnine.com" },
+  "Amazon Q Developer": { desc: "Amazon Q Developer (formerly CodeWhisperer) is AWS's AI coding assistant optimized for cloud and AWS development. It suggests service integrations, writes CloudFormation templates, and helps scan for vulnerabilities.", uses: ["AWS development","Cloud infrastructure code","Security scanning"], pricing: "Freemium", pricingDetail: "Free individual tier; Pro $19/user/mo", pricingType: "freemium", link: "https://aws.amazon.com/q/developer" },
+  "Replit AI":        { desc: "Replit AI is built into the Replit online IDE, letting you code, run, and deploy apps entirely in the browser. The AI helps generate code, debug errors, and explain concepts without any local setup.", uses: ["Browser-based coding","Learning to code","Quick prototypes"], pricing: "Freemium", pricingDetail: "Free plan; Core from $20/mo", pricingType: "freemium", link: "https://replit.com" },
+  "Cody":             { desc: "Sourcegraph Cody is an AI coding assistant that uses the full context of your codebase — not just open files — to give more accurate suggestions and answers. Great for navigating large enterprise repos.", uses: ["Enterprise codebases","Code navigation","Sourcegraph integration"], pricing: "Freemium", pricingDetail: "Free for individuals; Enterprise pricing custom", pricingType: "freemium", link: "https://sourcegraph.com/cody" },
+  "Blackbox AI":      { desc: "Blackbox AI is a VS Code extension and web tool for code search, generation, and autocomplete. It's especially popular for quickly finding and adapting code snippets from across the web.", uses: ["Code snippet search","Quick generation","Autocomplete"], pricing: "Freemium", pricingDetail: "Free plan; Pro $2.99/mo", pricingType: "freemium", link: "https://blackbox.ai" },
+  "Phind":            { desc: "Phind is a developer-focused AI search engine. Instead of general web results, it provides direct code answers with explanations, making it excellent for debugging and technical research.", uses: ["Developer search","Technical Q&A","Debugging research"], pricing: "Freemium", pricingDetail: "Free; Pro $17/mo", pricingType: "freemium", link: "https://phind.com" },
+  "Continue.dev":     { desc: "Continue.dev is an open-source AI coding assistant that you can self-host and connect to any LLM (GPT-4, Claude, Ollama, etc.). It integrates with VS Code and JetBrains as a free plugin.", uses: ["Open-source AI coding","Self-hosted LLMs","Privacy-first development"], pricing: "Free", pricingDetail: "Completely free and open-source (MIT license)", pricingType: "free", link: "https://continue.dev" },
+  "JetBrains AI":     { desc: "JetBrains AI is built directly into the JetBrains suite (IntelliJ, PyCharm, WebStorm, etc.). It provides context-aware completions, chat, and refactoring suggestions native to your IDE.", uses: ["JetBrains IDE users","Java/Python/Kotlin dev","Refactoring"], pricing: "Paid", pricingDetail: "From $8.33/mo (bundled with JetBrains tools)", pricingType: "paid", link: "https://jetbrains.com/ai" },
+  "Aider":            { desc: "Aider is an open-source AI pair programmer that runs in your terminal. You work alongside Claude or GPT-4 to edit code files directly, with automatic git commits for every change.", uses: ["CLI-based AI coding","Git-integrated workflows","Open-source projects"], pricing: "Free", pricingDetail: "Free and open-source; pay only for API usage (Claude/OpenAI)", pricingType: "free", link: "https://aider.chat" },
+  "Bolt AI":          { desc: "Bolt.new is Stackblitz's in-browser AI coding environment that generates full-stack apps from a prompt, with live preview and one-click deployment. No local setup needed.", uses: ["Full-stack app prototyping","Browser-based coding","Instant demos"], pricing: "Freemium", pricingDetail: "Free tier; paid from $20/mo", pricingType: "freemium", link: "https://bolt.new" },
+  "GPT Engineer":     { desc: "GPT Engineer generates an entire software project from a description in one shot. It creates the file structure, writes all the code, and asks clarifying questions to refine the output.", uses: ["Project scaffolding","Full app generation","Learning software architecture"], pricing: "Freemium", pricingDetail: "Free CLI (open-source); Gptengineer.app paid from $20/mo", pricingType: "freemium", link: "https://gptengineer.app" },
+  "CodiumAI":         { desc: "CodiumAI specializes in automated test generation. It analyzes your code and generates meaningful unit tests, including edge cases you might have missed.", uses: ["Test generation","Code quality","TDD workflows"], pricing: "Freemium", pricingDetail: "Free plan; Pro $19/mo", pricingType: "freemium", link: "https://codium.ai" },
+  "CodeRabbit":       { desc: "CodeRabbit is an AI code reviewer that integrates with GitHub and GitLab. It automatically reviews pull requests, identifies bugs, suggests improvements, and leaves inline comments.", uses: ["Automated PR review","Code quality enforcement","Team code reviews"], pricing: "Freemium", pricingDetail: "Free for open-source; Pro $12/user/mo", pricingType: "freemium", link: "https://coderabbit.ai" },
+  "Sweep AI":         { desc: "Sweep is an AI that turns GitHub Issues into Pull Requests. It reads your codebase, understands the issue, writes the code fix, and opens a PR — all automatically.", uses: ["GitHub automation","Bug fixing","Feature implementation from issues"], pricing: "Freemium", pricingDetail: "Free plan (5 issues/mo); Pro $480/mo", pricingType: "freemium", link: "https://sweep.dev" },
+  "Supermaven":       { desc: "Supermaven is one of the fastest AI code completion tools, with a 300k-token context window allowing it to understand your entire project. It's known for ultra-low latency suggestions.", uses: ["Fast code completion","Large codebase understanding","Low-latency typing"], pricing: "Freemium", pricingDetail: "Free plan; Pro $10/mo", pricingType: "freemium", link: "https://supermaven.com" },
+  "Tabby":            { desc: "Tabby is a self-hosted, open-source AI coding assistant. You run it on your own server and connect your preferred model, ensuring complete code privacy.", uses: ["Self-hosted AI coding","Enterprise privacy","Open-source teams"], pricing: "Free", pricingDetail: "Free and open-source; hardware costs only", pricingType: "free", link: "https://tabby.tabbyml.com" },
+  "FauxPilot":        { desc: "FauxPilot is an open-source, self-hosted alternative to GitHub Copilot that you can run locally. It uses the open CodeGen models and integrates with VS Code via the Copilot API.", uses: ["Self-hosted Copilot alternative","Air-gapped environments","Complete code privacy"], pricing: "Free", pricingDetail: "Free and open-source (Apache 2.0)", pricingType: "free", link: "https://github.com/fauxpilot/fauxpilot" },
+  "AI2SQL":           { desc: "AI2SQL converts natural language questions into SQL queries. You describe what data you want in plain English and it generates optimized SQL — no SQL knowledge required.", uses: ["SQL generation","Database querying","Non-technical analysts"], pricing: "Freemium", pricingDetail: "Free plan; paid from $10/mo", pricingType: "freemium", link: "https://ai2sql.io" },
+  "Qodo":             { desc: "Qodo (formerly CodiumAI) focuses on code quality through AI-generated tests, code review, and integrity checks. It analyzes code intent and suggests improvements beyond just syntax.", uses: ["Code quality","Test coverage","CI/CD integration"], pricing: "Freemium", pricingDetail: "Free plan; Pro $19/mo", pricingType: "freemium", link: "https://qodo.ai" },
+  "Refact AI":        { desc: "Refact.ai is an open-source AI coding assistant with self-hosting support. It includes code completion, chat, and a refactoring tool, with models you can run privately.", uses: ["Open-source AI coding","Self-hosted models","European data compliance"], pricing: "Freemium", pricingDetail: "Free (open-source); Cloud plans from $10/mo", pricingType: "freemium", link: "https://refact.ai" },
+  "Bito AI":          { desc: "Bito AI is a VS Code and JetBrains extension that goes beyond completion — it explains code, writes unit tests, and performs security reviews. Useful for developers working with unfamiliar codebases.", uses: ["Code explanation","Security review","Test generation"], pricing: "Freemium", pricingDetail: "Free plan; Team from $15/user/mo", pricingType: "freemium", link: "https://bito.ai" },
+  "Sourcegraph Cody": { desc: "Sourcegraph Cody (enterprise tier) understands your entire organization's codebase through Sourcegraph's code intelligence. It's the most context-aware AI for large enterprise codebases.", uses: ["Enterprise-scale codebases","Cross-repo understanding","Compliance-focused teams"], pricing: "Enterprise", pricingDetail: "Enterprise pricing custom; self-hosted option available", pricingType: "enterprise", link: "https://sourcegraph.com/cody" },
+  "Mutable AI":       { desc: "Mutable AI focuses on intelligent code refactoring and documentation generation. It analyzes your codebase, identifies improvement areas, and can auto-document entire projects.", uses: ["Codebase refactoring","Auto documentation","Technical debt reduction"], pricing: "Paid", pricingDetail: "From $19/mo", pricingType: "paid", link: "https://mutable.ai" },
+  "AskCodi":          { desc: "AskCodi is a coding assistant focused on explaining code. It answers 'why does this code do that?' questions, generates docstrings, and helps juniors understand complex code.", uses: ["Code explanation","Learning","Documentation generation"], pricing: "Freemium", pricingDetail: "Free plan; paid from $9.99/mo", pricingType: "freemium", link: "https://askcodi.com" },
+  "Pieces AI":        { desc: "Pieces AI is an intelligent snippet manager and on-device AI for developers. It captures, enriches, and recalls code snippets from your workflow — with AI that runs fully offline.", uses: ["Code snippet management","Offline AI coding","Developer workflow"], pricing: "Freemium", pricingDetail: "Free desktop app; Team plans from $49/user/yr", pricingType: "freemium", link: "https://pieces.app" },
+  "CodeGeeX":         { desc: "CodeGeeX is a multilingual AI coding assistant from Tsinghua University, particularly strong for Chinese developers. It supports 40+ programming languages and runs locally.", uses: ["Multilingual code gen","Chinese developers","Local model running"], pricing: "Free", pricingDetail: "Free and open-source", pricingType: "free", link: "https://codegeex.cn" },
+  "MarsCode":         { desc: "MarsCode is ByteDance's AI coding assistant, deeply integrated with their cloud IDE. It supports 100+ languages and is gaining traction in the Asia-Pacific developer community.", uses: ["ByteDance ecosystem","Cloud IDE development","Enterprise teams in APAC"], pricing: "Freemium", pricingDetail: "Free plan available; paid plans for teams", pricingType: "freemium", link: "https://marscode.com" },
+  "Intellicode":      { desc: "IntelliCode is Microsoft's AI coding assistant built into Visual Studio (not VS Code). It provides ML-powered completions trained on thousands of open-source repos and your own codebase.", uses: ["Visual Studio users",".NET / C# development","Microsoft ecosystem"], pricing: "Free", pricingDetail: "Completely free — bundled with Visual Studio", pricingType: "free", link: "https://visualstudio.microsoft.com/services/intellicode" },
+  "Devika AI":        { desc: "Devika is an open-source AI software engineer (similar to Devin) that can plan, research, and write code for complete projects autonomously. It runs locally and supports multiple LLMs.", uses: ["Autonomous code generation","Full project creation","Open-source AI agent"], pricing: "Free", pricingDetail: "Free and open-source; pay for LLM API usage", pricingType: "free", link: "https://github.com/stitionai/devika" },
+  "OpenDevin":        { desc: "OpenDevin is the open-source community's answer to Devin AI. It's an autonomous agent that can plan, code, test, and deploy software by interacting with a browser and terminal.", uses: ["Autonomous software development","AI agent research","Full-stack task automation"], pricing: "Free", pricingDetail: "Free and open-source", pricingType: "free", link: "https://github.com/OpenDevin/OpenDevin" },
+  "PearAI":           { desc: "PearAI is an open-source AI code editor (fork of VS Code + Continue) that gives you full transparency and control over the AI models and context used for coding assistance.", uses: ["Open-source AI editing","Model flexibility","Developer customization"], pricing: "Freemium", pricingDetail: "Free (open-source); paid hosted plan from $15/mo", pricingType: "freemium", link: "https://trypear.ai" },
+  "Smol Developer":   { desc: "Smol Developer is a lightweight AI agent that generates entire software projects from a product spec. It's designed to be a personal 'junior developer' for solo founders and hackers.", uses: ["Quick project scaffolding","Solo founders","Autonomous coding experiments"], pricing: "Free", pricingDetail: "Free and open-source; pay for OpenAI API usage", pricingType: "free", link: "https://github.com/smol-ai/developer" },
+  "Cursor Composer":  { desc: "Cursor Composer is the multi-file AI editing mode within Cursor IDE. It understands your whole project context and can make coordinated changes across multiple files at once.", uses: ["Multi-file refactoring","Feature implementation","Codebase-wide changes"], pricing: "Freemium", pricingDetail: "Included with Cursor; Pro $20/mo for more usage", pricingType: "freemium", link: "https://cursor.com" },
+  "Codiga":           { desc: "Codiga is an AI-powered static analysis and code review tool. It detects security vulnerabilities, code smells, and style issues in real-time as you code, across 12 languages.", uses: ["Static code analysis","Security vulnerability detection","Code quality"], pricing: "Freemium", pricingDetail: "Free plan; paid from $14/mo", pricingType: "freemium", link: "https://codiga.io" },
+  "SourceAI":         { desc: "SourceAI generates code in any programming language from a simple description. It also features a debugger and code explainer, making it useful for developers at all skill levels.", uses: ["Code from descriptions","Debugging help","Multi-language generation"], pricing: "Freemium", pricingDetail: "Free tier; paid from $9.99/mo", pricingType: "freemium", link: "https://sourceai.dev" },
+  "CodeWP":           { desc: "CodeWP is the AI code generator built specifically for WordPress. It generates PHP, JavaScript, and WooCommerce code tailored to the WordPress ecosystem, saving developers hours of work.", uses: ["WordPress PHP snippets","WooCommerce code","WordPress plugin dev"], pricing: "Freemium", pricingDetail: "Free plan; paid from $12/mo", pricingType: "freemium", link: "https://codewp.ai" },
+  "SQLAI":            { desc: "SQLAI.ai generates, explains, and optimizes SQL queries from natural language. It supports MySQL, PostgreSQL, SQLite, BigQuery, and more — great for data analysts and back-end developers.", uses: ["SQL query generation","Query optimization","Database analysis"], pricing: "Freemium", pricingDetail: "Free plan; paid from $8/mo", pricingType: "freemium", link: "https://sqlai.ai" },
+  "Quest AI":         { desc: "Quest AI converts Figma designs into production-ready React code. It's designed to bridge the gap between designers and front-end developers by automating the design-to-code handoff.", uses: ["Figma to React conversion","Design handoff","Front-end scaffolding"], pricing: "Freemium", pricingDetail: "Free plan; paid from $29/mo", pricingType: "freemium", link: "https://quest.ai" },
+  "HeyBoss AI":       { desc: "HeyBoss AI lets non-technical founders create full applications by describing what they want. It acts as an AI product manager and developer, turning ideas into working prototypes.", uses: ["Non-technical founders","MVP creation","Idea to product"], pricing: "Paid", pricingDetail: "From $49/mo", pricingType: "paid", link: "https://heyboss.xyz" },
+  "Cogram":           { desc: "Cogram is an AI tool for software teams that records and summarizes technical meetings, then links discussion points to code tasks and issues automatically.", uses: ["Technical meeting notes","Task extraction from meetings","Team coordination"], pricing: "Paid", pricingDetail: "From $20/user/mo", pricingType: "paid", link: "https://cogram.com" },
+  "Safurai":          { desc: "Safurai is a multilingual AI coding assistant (IDE plugin) that helps with code generation, documentation, and test writing across 20+ programming languages.", uses: ["Multilingual code generation","Documentation","Test writing"], pricing: "Freemium", pricingDetail: "Free plan; paid from $9/mo", pricingType: "freemium", link: "https://safurai.com" },
+  "DeepCode AI":      { desc: "DeepCode AI (now part of Snyk) uses AI to find security vulnerabilities in your code. It integrates with your CI/CD pipeline and catches issues that traditional static analysis misses.", uses: ["Security scanning","CI/CD integration","Vulnerability detection"], pricing: "Freemium", pricingDetail: "Free for open source; paid Snyk plans from $25/mo", pricingType: "freemium", link: "https://snyk.io/product/snyk-code" },
+  "Ponicode":         { desc: "Ponicode automates unit test generation using AI. It analyzes your functions, generates complete test suites, and integrates with GitHub Actions for continuous testing.", uses: ["Unit test generation","CI/CD testing","Code reliability"], pricing: "Freemium", pricingDetail: "Free plan; paid plans available", pricingType: "freemium", link: "https://ponicode.com" },
+
+  // ── FULLSTACK ──
+  "Lovable":          { desc: "Lovable (formerly GPT Engineer) is a vibe-coding platform that builds complete React + Supabase apps from a chat conversation. It handles front-end, back-end, and database setup in one place.", uses: ["Full-stack app building","No-code React apps","SaaS prototypes"], pricing: "Freemium", pricingDetail: "Free plan (limited messages); paid from $20/mo", pricingType: "freemium", link: "https://lovable.dev" },
+  "Bolt.new":         { desc: "Bolt.new by StackBlitz is an in-browser AI development environment. You describe an app, it generates the full-stack code, shows a live preview, and can deploy to Netlify in one click.", uses: ["Full-stack prototyping","Live preview coding","Instant deployment"], pricing: "Freemium", pricingDetail: "Free tier; paid from $20/mo", pricingType: "freemium", link: "https://bolt.new" },
+  "v0":               { desc: "v0 by Vercel generates React/Next.js UI components from text or image prompts using shadcn/ui and Tailwind CSS. You can copy the code or continue iterating through chat.", uses: ["React UI generation","Next.js components","shadcn/ui components"], pricing: "Freemium", pricingDetail: "Free plan (limited tokens); paid from $20/mo", pricingType: "freemium", link: "https://v0.dev" },
+  "Base44":           { desc: "Base44 is a full-stack AI app builder that generates complete React frontends with a built-in database and API. It's fast and doesn't require any external backend services.", uses: ["Full-stack app creation","Built-in database apps","SaaS tools"], pricing: "Freemium", pricingDetail: "Free plan; paid from $29/mo", pricingType: "freemium", link: "https://base44.com" },
+  "Replit":           { desc: "Replit is a browser-based IDE that hosts, runs, and deploys code in 50+ languages. Its AI (powered by Claude) generates code from prompts and helps debug — everything in one browser tab.", uses: ["Browser-based development","Learning coding","Quick prototypes","Collaboration"], pricing: "Freemium", pricingDetail: "Free plan; Core from $20/mo", pricingType: "freemium", link: "https://replit.com" },
+  "Softr":            { desc: "Softr turns Airtable or Google Sheets into powerful web apps without coding. Build client portals, internal tools, and member directories with AI-assisted block selection.", uses: ["Airtable apps","Client portals","No-code web apps"], pricing: "Freemium", pricingDetail: "Free plan; paid from $49/mo", pricingType: "freemium", link: "https://softr.io" },
+  "Glide":            { desc: "Glide builds apps from your spreadsheet or database data. Its AI suggests the right app type, generates layouts, and connects everything to your data source automatically.", uses: ["Spreadsheet to app","Field service apps","Internal data tools"], pricing: "Freemium", pricingDetail: "Free plan; paid from $49/mo", pricingType: "freemium", link: "https://glideapps.com" },
+  "Bubble AI":        { desc: "Bubble is the most powerful no-code full-stack platform, capable of building complex SaaS apps. Its AI features speed up database design, workflow creation, and UI generation.", uses: ["SaaS applications","Marketplace apps","Complex web apps"], pricing: "Freemium", pricingDetail: "Free plan; paid from $32/mo", pricingType: "freemium", link: "https://bubble.io" },
+  "FlutterFlow AI":   { desc: "FlutterFlow uses AI to build native mobile and web apps visually. It outputs production Flutter code and integrates with Firebase, Supabase, and custom APIs.", uses: ["Mobile app development","Flutter code generation","Cross-platform apps"], pricing: "Freemium", pricingDetail: "Free plan; paid from $30/mo", pricingType: "freemium", link: "https://flutterflow.io" },
+  "Appsmith AI":      { desc: "Appsmith is an open-source platform for building internal tools and admin panels. Its AI generates CRUD apps from database schemas and connects to any REST or GraphQL API.", uses: ["Admin panels","Internal dashboards","CRUD apps"], pricing: "Freemium", pricingDetail: "Free (self-host or cloud); Business from $40/mo", pricingType: "freemium", link: "https://appsmith.com" },
+  "Retool AI":        { desc: "Retool is the leading platform for building internal tools fast. Its AI generates components, queries, and workflows, and now includes an AI agent builder for LLM-powered apps.", uses: ["Internal tools","Admin dashboards","LLM app building"], pricing: "Freemium", pricingDetail: "Free (5 users); paid from $10/user/mo", pricingType: "freemium", link: "https://retool.com" },
+  "Budibase":         { desc: "Budibase is an open-source low-code platform for building internal tools and business apps. Self-host for free, or use their cloud service with AI assistance for data apps and workflows.", uses: ["Internal tools","Open-source projects","Business apps"], pricing: "Freemium", pricingDetail: "Free self-host; Cloud from $50/mo", pricingType: "freemium", link: "https://budibase.com" },
+  "ToolJet AI":       { desc: "ToolJet is an open-source Retool alternative for building internal tools with a visual builder. AI assists with query generation and component setup. Self-host for free.", uses: ["Internal tools","Self-hosted dashboards","Open-source Retool alt"], pricing: "Freemium", pricingDetail: "Free self-host; Cloud from $20/mo", pricingType: "freemium", link: "https://tooljet.com" },
+  "Xano AI":          { desc: "Xano is a no-code backend builder with AI that helps you create scalable APIs, databases, and business logic without writing code. Works with any frontend.", uses: ["No-code backends","API creation","Database design"], pricing: "Freemium", pricingDetail: "Free plan (1 project); paid from $25/mo", pricingType: "freemium", link: "https://xano.com" },
+  "WeWeb":            { desc: "WeWeb is a no-code frontend builder that connects to any backend (Supabase, Xano, REST APIs). Build professional web apps visually with your own data sources.", uses: ["Custom frontend + backend","SaaS UI building","Client-facing apps"], pricing: "Freemium", pricingDetail: "Free plan; paid from $60/mo", pricingType: "freemium", link: "https://weweb.io" },
+  "Flowise":          { desc: "Flowise is an open-source drag-and-drop tool for building LLM flows and AI chatbots. Connect models, tools, memory, and APIs visually — perfect for building AI-powered apps.", uses: ["LLM app building","AI chatbots","Custom AI workflows"], pricing: "Free", pricingDetail: "Free and open-source; Cloud from $35/mo", pricingType: "free", link: "https://flowiseai.com" },
+  "Noodl":            { desc: "Noodl is an open-source visual development platform for React-based web apps. Its visual logic editor connects to any backend and generates clean JavaScript code.", uses: ["Visual React development","Rapid prototyping","Data-driven apps"], pricing: "Freemium", pricingDetail: "Free and open-source; Cloud from $25/mo", pricingType: "freemium", link: "https://noodl.net" },
+  "Create.xyz":       { desc: "Create.xyz lets you build and publish apps, tools, and pages from a single prompt. No coding required — just describe what you want and share the link.", uses: ["Quick web tools","MVP creation","Shareable micro-apps"], pricing: "Freemium", pricingDetail: "Free plan; paid from $29/mo", pricingType: "freemium", link: "https://www.create.xyz" },
+  "Superblocks":      { desc: "Superblocks is a developer-first internal tool builder. AI generates UI, APIs, and scheduled jobs. It's like Retool but with more code control and a better developer experience.", uses: ["Internal tools","Developer-focused build","API-connected dashboards"], pricing: "Freemium", pricingDetail: "Free plan; paid from $19/user/mo", pricingType: "freemium", link: "https://superblocks.com" },
+  "Questflow":        { desc: "Questflow is an AI-first workflow automation platform where AI agents handle multi-step business processes. Connect apps, automate repetitive tasks, and build custom AI agents visually.", uses: ["AI workflow automation","Business process automation","Multi-app orchestration"], pricing: "Freemium", pricingDetail: "Free plan; paid from $29/mo", pricingType: "freemium", link: "https://questflow.ai" },
+
+  // ── DESIGN ──
+  "Figma AI":         { desc: "Figma AI brings generative AI directly into the world's leading design tool. It can generate UI designs, rename layers, summarize designs, and prototype interactions — all within the Figma editor you already know.", uses: ["UI/UX design","Prototyping","Design handoff","Collaboration"], pricing: "Freemium", pricingDetail: "Free plan (3 projects); paid from $15/editor/mo", pricingType: "freemium", link: "https://figma.com" },
+  "Galileo AI":       { desc: "Galileo AI generates high-fidelity UI designs from text prompts. It creates full screens with realistic components, content, and layouts — ideal for rapidly exploring design concepts.", uses: ["UI exploration","Design ideation","Rapid wireframing"], pricing: "Paid", pricingDetail: "Waitlist/invite; pricing not fully public", pricingType: "paid", link: "https://usegalileo.ai" },
+  "Uizard":           { desc: "Uizard turns sketches, screenshots, and text prompts into interactive prototypes and wireframes. It's beginner-friendly and lets non-designers visualize product ideas quickly.", uses: ["Wireframing","Rapid prototyping","Non-designer ideation"], pricing: "Freemium", pricingDetail: "Free plan; paid from $12/mo", pricingType: "freemium", link: "https://uizard.io" },
+  "Visily":           { desc: "Visily converts screenshots and hand-drawn sketches into editable wireframes using AI. It has a large template library and is optimized for product teams doing quick UX work.", uses: ["Screenshot to wireframe","Sketch digitization","Quick UX work"], pricing: "Freemium", pricingDetail: "Free plan; paid from $16/editor/mo", pricingType: "freemium", link: "https://visily.ai" },
+  "Framer AI":        { desc: "Framer is a design and publication tool for creating interactive, production-ready websites. Its AI generates entire site sections from prompts with smooth animations baked in.", uses: ["Interactive design","Motion UI","Design-to-publish sites"], pricing: "Freemium", pricingDetail: "Free plan; paid from $5/mo", pricingType: "freemium", link: "https://framer.com" },
+  "Motiff":           { desc: "Motiff is an AI-first design tool built as a Figma alternative. It has deep AI integration for generating UI, finding design patterns, and maintaining design systems at scale.", uses: ["AI-first UI design","Design system management","Figma alternative"], pricing: "Freemium", pricingDetail: "Free plan; paid from $12/editor/mo", pricingType: "freemium", link: "https://motiff.com" },
+  "Canva AI":         { desc: "Canva's AI tools include Magic Design (generates designs from prompts), Magic Write (AI copywriter), Background Remover, and an image generator. It's the most accessible design AI for non-designers.", uses: ["Social media graphics","Presentations","Marketing materials","Non-designers"], pricing: "Freemium", pricingDetail: "Free plan; Pro $14.99/mo", pricingType: "freemium", link: "https://canva.com" },
+  "Adobe Firefly":    { desc: "Adobe Firefly is Adobe's family of generative AI models, commercially safe and trained on licensed content. It powers AI features in Photoshop, Illustrator, and Express.", uses: ["Commercial image generation","Photoshop generative fill","Illustrator vector gen"], pricing: "Freemium", pricingDetail: "Free credits monthly; paid plans from $4.99/mo", pricingType: "freemium", link: "https://firefly.adobe.com" },
+  "Adobe Express AI": { desc: "Adobe Express is a simplified creative tool (like Canva) powered by Firefly AI. It generates images, removes backgrounds, animates text, and creates branded graphics quickly.", uses: ["Quick graphics","Social media content","Branded assets"], pricing: "Freemium", pricingDetail: "Free plan; Premium $9.99/mo", pricingType: "freemium", link: "https://express.adobe.com" },
+  "Miro AI":          { desc: "Miro AI enhances the popular online whiteboard with AI features for generating diagrams, summarizing sticky notes, clustering ideas, and drafting content — all in a collaborative workspace.", uses: ["Team brainstorming","AI diagramming","Workshop facilitation"], pricing: "Freemium", pricingDetail: "Free plan; paid from $8/user/mo", pricingType: "freemium", link: "https://miro.com" },
+  "Whimsical AI":     { desc: "Whimsical is a product thinking tool with AI-powered flowcharts, mind maps, and wireframes. Its AI generates flowcharts from text descriptions in seconds.", uses: ["Flowcharts","Mind maps","User flows","Product thinking"], pricing: "Freemium", pricingDetail: "Free plan; paid from $10/user/mo", pricingType: "freemium", link: "https://whimsical.com" },
+  "Microsoft Designer": { desc: "Microsoft Designer is a free AI-powered graphic design app integrated with Microsoft 365 and Bing. It generates social media graphics, images, and presentations from prompts.", uses: ["Office users","Social media graphics","AI image generation"], pricing: "Free", pricingDetail: "Free with Microsoft account", pricingType: "free", link: "https://designer.microsoft.com" },
+  "Vercel v0":        { desc: "v0 by Vercel generates React UI components and full pages from text or image descriptions using shadcn/ui and Tailwind. Copy the code or continue iterating in the chat.", uses: ["React UI generation","shadcn/ui components","Rapid frontend dev"], pricing: "Freemium", pricingDetail: "Free plan (limited); paid from $20/mo", pricingType: "freemium", link: "https://v0.dev" },
+  "Sketch AI":        { desc: "Sketch is the original macOS design tool, now with AI-powered plugins and features. It's widely used for product design on Apple devices and has a large ecosystem of plugins.", uses: ["Mac app design","Product design","Design systems"], pricing: "Paid", pricingDetail: "From $10/editor/mo or $99/yr", pricingType: "paid", link: "https://sketch.com" },
+  "FigJam AI":        { desc: "FigJam is Figma's collaborative whiteboard tool. Its AI features generate diagrams, sort sticky notes, summarize content, and help teams ideate faster in shared sessions.", uses: ["Team collaboration","Brainstorming sessions","Diagram generation"], pricing: "Freemium", pricingDetail: "Free for 3 files; paid from $3/editor/mo", pricingType: "freemium", link: "https://figma.com/figjam" },
+  "Penpot AI":        { desc: "Penpot is the open-source design and prototyping tool, completely free and self-hostable. It's the best Figma alternative for teams who need full control over their tools and data.", uses: ["Open-source design","Self-hosted teams","Figma alternative"], pricing: "Free", pricingDetail: "Free and open-source; Cloud also free", pricingType: "free", link: "https://penpot.app" },
+  "Maze AI":          { desc: "Maze is an AI-powered rapid user research platform. It lets you test prototypes with real users, analyze results with AI, and get design insights without hiring a research team.", uses: ["User testing","Usability research","Design validation"], pricing: "Freemium", pricingDetail: "Free plan (1 study/mo); paid from $99/mo", pricingType: "freemium", link: "https://maze.co" },
+  "Dora AI":          { desc: "Dora AI generates stunning 3D websites with motion and interactive animations from text prompts — no-code required. It's ideal for visually impressive showcase and portfolio sites.", uses: ["3D websites","Motion design","Interactive showcases"], pricing: "Freemium", pricingDetail: "Free plan; paid from $19/mo", pricingType: "freemium", link: "https://dora.run" },
+  "Magician":         { desc: "Magician is an AI plugin for Figma that generates icons, images, and text directly inside your Figma designs. It speeds up the asset creation workflow for designers already in Figma.", uses: ["Figma icon generation","Image generation in Figma","Copy writing in designs"], pricing: "Paid", pricingDetail: "From $4/mo", pricingType: "paid", link: "https://magician.design" },
+  "Locofy":           { desc: "Locofy converts Figma and Adobe XD designs into production-ready code for React, Next.js, Vue, and more. It preserves styling and responsiveness accurately.", uses: ["Figma to code","Design handoff","Front-end development"], pricing: "Freemium", pricingDetail: "Free plan; paid from $36/mo", pricingType: "freemium", link: "https://locofy.ai" },
+  "UXPin AI":         { desc: "UXPin Merge allows you to design with actual code components from your design system. Its AI features generate components and maintain consistency between design and code.", uses: ["Code-based design","Design system consistency","Component-driven design"], pricing: "Paid", pricingDetail: "From $19/editor/mo", pricingType: "paid", link: "https://uxpin.com" },
+  "Hotjar AI":        { desc: "Hotjar uses AI to analyze user session recordings, heatmaps, and surveys to give you behavioral insights. It surfaces the most important findings automatically so you can improve UX faster.", uses: ["User behavior analytics","UX improvement","Conversion optimization"], pricing: "Freemium", pricingDetail: "Free plan (35 sessions/day); paid from $32/mo", pricingType: "freemium", link: "https://hotjar.com" },
+  "Attention Insight": { desc: "Attention Insight predicts where users will look on your design before you launch it, using AI eye-tracking simulation. Test designs in minutes without needing real user panels.", uses: ["Pre-launch UX testing","Attention prediction","CRO optimization"], pricing: "Freemium", pricingDetail: "Free plan (3 analyses/mo); paid from $23/mo", pricingType: "freemium", link: "https://attentioninsight.com" },
+  "Relume":           { desc: "Relume is an AI website builder and Webflow component library. Its AI generates full sitemaps and wireframes from a text description, which you can then build in Webflow or Figma.", uses: ["Webflow component library","Sitemap generation","Wireframing with AI"], pricing: "Freemium", pricingDetail: "Free plan; paid from $38/mo", pricingType: "freemium", link: "https://relume.io" },
+  "Stark AI":         { desc: "Stark is an accessibility-focused design tool that checks your designs against WCAG guidelines. Its AI suggests fixes for contrast, alt text, focus order, and other accessibility issues.", uses: ["Accessibility compliance","WCAG auditing","Inclusive design"], pricing: "Freemium", pricingDetail: "Free plan; paid from $10/mo", pricingType: "freemium", link: "https://www.getstark.co" },
+  "Lunacy AI":        { desc: "Lunacy is a free, native graphic design app with AI features including background removal, object replacement, and image generation. It works offline and is a solid free Figma alternative.", uses: ["Free design tool","Offline design","Quick UI mockups"], pricing: "Free", pricingDetail: "Completely free (no paid tiers)", pricingType: "free", link: "https://icons8.com/lunacy" },
+  "Khroma":           { desc: "Khroma uses AI to learn your color preferences and generate unlimited palettes tailored to your taste. It's the best tool for designers who struggle with color selection.", uses: ["Color palette generation","Brand color selection","Design ideation"], pricing: "Free", pricingDetail: "Free to use", pricingType: "free", link: "https://khroma.co" },
+  "Designs.ai":       { desc: "Designs.ai is a complete brand kit creation platform with AI tools for logos, mockups, social media, and copywriting — all in one subscription.", uses: ["Complete brand kit","Logo creation","Social media design"], pricing: "Paid", pricingDetail: "From $29/mo", pricingType: "paid", link: "https://designs.ai" },
+  "Zeplin AI":        { desc: "Zeplin is a design handoff tool that now uses AI to generate component specs, code snippets, and documentation from your Figma or Sketch designs automatically.", uses: ["Design-to-dev handoff","Spec generation","Component documentation"], pricing: "Freemium", pricingDetail: "Free for 1 project; paid from $8/mo", pricingType: "freemium", link: "https://zeplin.io" },
+  "Jitter AI":        { desc: "Jitter is an AI-assisted motion design tool for creating animations and micro-interactions. It's much simpler than After Effects and exports animations for web and social media.", uses: ["UI animations","Social media motion","Loading animations"], pricing: "Freemium", pricingDetail: "Free plan; paid from $8/mo", pricingType: "freemium", link: "https://jitter.video" },
+  "Miro AI": { desc: "Miro AI enhances the popular online whiteboard with AI features for generating diagrams, summarizing sticky notes, clustering ideas, and drafting content — all in a collaborative workspace.", uses: ["Team collaboration","AI diagramming","Workshop facilitation"], pricing: "Freemium", pricingDetail: "Free plan; paid from $8/user/mo", pricingType: "freemium", link: "https://miro.com" },
+
+  // ── ASSETS ──
+  "Midjourney":       { desc: "Midjourney is widely considered the best AI image generator for artistic and creative work. It produces stunning, high-quality images from text prompts and is used by artists, designers, and marketers worldwide.", uses: ["Concept art","Marketing visuals","Illustration","Creative exploration"], pricing: "Paid", pricingDetail: "From $10/mo (no free tier after trial ended)", pricingType: "paid", link: "https://midjourney.com" },
+  "DALL·E":           { desc: "DALL·E 3 by OpenAI is integrated into ChatGPT and the API, making it extremely accessible. It's excellent at following detailed prompts and generating realistic images with accurate text.", uses: ["Product visuals","Illustrations","Text-in-image","Conversational image gen"], pricing: "Freemium", pricingDetail: "Included with ChatGPT Plus ($20/mo); API from $0.04/image", pricingType: "freemium", link: "https://openai.com/dall-e-3" },
+  "Adobe Firefly":    { desc: "Adobe Firefly is trained on licensed Adobe Stock content, making it one of the safest choices for commercial use. It powers Generative Fill in Photoshop and vector generation in Illustrator.", uses: ["Commercial-safe images","Photoshop integration","Vector generation"], pricing: "Freemium", pricingDetail: "Free monthly credits; paid plans from $4.99/mo", pricingType: "freemium", link: "https://firefly.adobe.com" },
+  "Canva AI":         { desc: "Canva's AI image tools include a text-to-image generator, background remover, and Magic Edit — all within Canva's easy design interface. Perfect for non-designers needing quick visuals.", uses: ["Social media assets","Marketing graphics","Quick image gen"], pricing: "Freemium", pricingDetail: "Free plan; Pro $14.99/mo", pricingType: "freemium", link: "https://canva.com" },
+  "Leonardo AI":      { desc: "Leonardo AI is specialized for game art, characters, and concept art. It offers fine-tuned models for different styles and a canvas editor for advanced image editing.", uses: ["Game asset creation","Character design","Concept art","Style-consistent imagery"], pricing: "Freemium", pricingDetail: "Free plan (150 tokens/day); paid from $10/mo", pricingType: "freemium", link: "https://leonardo.ai" },
+  "Ideogram":         { desc: "Ideogram excels at generating images with accurate, readable text embedded in them — a notoriously hard problem for most AI image generators. Great for posters, logos, and typographic designs.", uses: ["Text-in-images","Posters","Logo concepts","Typography art"], pricing: "Freemium", pricingDetail: "Free plan; paid from $7/mo", pricingType: "freemium", link: "https://ideogram.ai" },
+  "Flux AI":          { desc: "Flux (by Black Forest Labs) is a family of state-of-the-art open-source image models known for photorealism and speed. Available via API on Replicate, fal.ai, and others.", uses: ["Photorealistic images","API integration","Fast generation"], pricing: "Freemium", pricingDetail: "Free via some platforms; API from ~$0.003/image", pricingType: "freemium", link: "https://blackforestlabs.ai" },
+  "Recraft":          { desc: "Recraft specializes in generating scalable vector graphics (SVG) and brand-consistent images. It's the go-to tool for creating icons, logos, and illustrations that need to be resized.", uses: ["SVG generation","Icon creation","Brand assets","Vector illustrations"], pricing: "Freemium", pricingDetail: "Free plan (200 credits); paid from $12/mo", pricingType: "freemium", link: "https://recraft.ai" },
+  "Playground AI":    { desc: "Playground AI offers a generous free tier for image generation using Stable Diffusion and DALL·E models. It includes image editing, inpainting, and canvas tools.", uses: ["Free image generation","Image editing","Inpainting","Learning AI art"], pricing: "Freemium", pricingDetail: "Free (500 images/day); paid from $15/mo", pricingType: "freemium", link: "https://playground.com" },
+  "DreamStudio":      { desc: "DreamStudio is the official interface for Stable Diffusion by Stability AI. It gives you access to the latest SD models with a credit-based system — buy only what you need.", uses: ["Stable Diffusion access","Professional generation","Pay-as-you-go"], pricing: "Freemium", pricingDetail: "Free credits on signup; then $0.002/image", pricingType: "freemium", link: "https://dreamstudio.ai" },
+  "Bing Image Creator": { desc: "Bing Image Creator (powered by DALL·E 3) is completely free via Microsoft account. It's one of the best free options for high-quality image generation with no watermarks.", uses: ["Free image gen","Quick visuals","Personal projects"], pricing: "Free", pricingDetail: "Completely free with Microsoft account", pricingType: "free", link: "https://bing.com/images/create" },
+  "Stable Diffusion": { desc: "Stable Diffusion is the open-source image generation model that powers countless tools. Run it locally for free with Automatic1111 or ComfyUI, or use it via APIs. Maximum customization.", uses: ["Custom model training","Local generation","Open-source art","Maximum control"], pricing: "Free", pricingDetail: "Free and open-source; run locally for $0", pricingType: "free", link: "https://stability.ai" },
+  "Craiyon":          { desc: "Craiyon (formerly DALL·E mini) is a free, unlimited AI image generator. Quality is lower than paid tools but it's perfect for fun, quick exploration with zero cost or signup.", uses: ["Free unlimited generation","Fun exploration","Quick ideas"], pricing: "Free", pricingDetail: "Completely free (ad-supported)", pricingType: "free", link: "https://craiyon.com" },
+  "Krea AI":          { desc: "Krea AI features real-time AI image generation — see your image update as you type your prompt. It also has an AI enhancement tool that upscales and improves any image instantly.", uses: ["Real-time image gen","Image enhancement","Live creative exploration"], pricing: "Freemium", pricingDetail: "Free plan; paid from $10/mo", pricingType: "freemium", link: "https://krea.ai" },
+  "Artbreeder":       { desc: "Artbreeder lets you create and blend images by mixing different 'genes' (parameters). It's great for character design, face generation, and creating unique art through evolution-style blending.", uses: ["Character design","Face generation","Artistic blending","Creative exploration"], pricing: "Freemium", pricingDetail: "Free plan; paid from $8.99/mo", pricingType: "freemium", link: "https://artbreeder.com" },
+  "Remove.bg":        { desc: "Remove.bg is the most popular automatic background remover — upload any image and get a clean cutout in seconds. Used by e-commerce stores, designers, and creators worldwide.", uses: ["Background removal","Product photos","Profile pictures"], pricing: "Freemium", pricingDetail: "Free (low-res); paid from $0.20/image", pricingType: "freemium", link: "https://remove.bg" },
+  "Clipdrop":         { desc: "Clipdrop by Stability AI is a suite of AI image tools including background removal, image upscaling, relight, and Stable Diffusion generation — all in one web app.", uses: ["Image cleanup","Background replacement","Upscaling","Product photos"], pricing: "Freemium", pricingDetail: "Free plan; paid from $9.99/mo", pricingType: "freemium", link: "https://clipdrop.co" },
+  "Photoroom":        { desc: "Photoroom is an AI photo editor specialized for product photography. Remove backgrounds, add AI-generated backgrounds, batch process hundreds of images, and create studio-quality shots.", uses: ["E-commerce product photos","Batch image editing","Studio-quality shots"], pricing: "Freemium", pricingDetail: "Free plan; paid from $9.99/mo", pricingType: "freemium", link: "https://photoroom.com" },
+  "Runway":           { desc: "Runway is a professional AI video generation and editing platform used by filmmakers and creators. Its Gen-3 model produces high-quality video from text or image prompts.", uses: ["AI video generation","Film production","Creative video editing"], pricing: "Freemium", pricingDetail: "Free (125 credits); paid from $15/mo", pricingType: "freemium", link: "https://runwayml.com" },
+  "Pika":             { desc: "Pika Labs generates short videos from text prompts or images. It's known for creative video effects, character animation, and quick social media content generation.", uses: ["Short video creation","Social media content","Text to video"], pricing: "Freemium", pricingDetail: "Free plan; paid from $8/mo", pricingType: "freemium", link: "https://pika.art" },
+  "Luma AI":          { desc: "Luma AI generates high-quality videos (Dream Machine) and 3D models from prompts or images. Its Dream Machine model is one of the most impressive video generators available.", uses: ["AI video generation","3D model creation","Product visualization"], pricing: "Freemium", pricingDetail: "Free (30 videos/mo); paid from $29.99/mo", pricingType: "freemium", link: "https://lumalabs.ai" },
+  "Synthesia":        { desc: "Synthesia creates professional AI avatar videos from a script. Used widely for corporate training, explainer videos, and e-learning — in 130+ languages with 140+ AI presenters.", uses: ["Corporate training videos","E-learning content","Explainer videos","Multilingual video"], pricing: "Paid", pricingDetail: "From $29/mo", pricingType: "paid", link: "https://synthesia.io" },
+  "HeyGen":           { desc: "HeyGen creates AI talking avatar videos that can clone your voice and likeness. It's the most popular tool for personal branding, marketing, and localized video content.", uses: ["Personal brand videos","Voice cloning","Localized marketing videos"], pricing: "Freemium", pricingDetail: "Free (1 min video); paid from $29/mo", pricingType: "freemium", link: "https://heygen.com" },
+  "Invideo AI":       { desc: "InVideo AI converts text scripts or prompts into full videos with stock footage, voiceovers, and music. It's the easiest way to create YouTube-style videos without any video editing experience.", uses: ["YouTube content","Text to video","Social media videos","Marketing content"], pricing: "Freemium", pricingDetail: "Free plan; paid from $20/mo", pricingType: "freemium", link: "https://invideo.io" },
+  "Veed AI":          { desc: "VEED.IO is an online video editor with powerful AI features: auto-subtitles, background removal, AI avatars, and automatic translations. Great for social media creators.", uses: ["Video editing","Auto subtitles","AI avatars","Social media creators"], pricing: "Freemium", pricingDetail: "Free plan; paid from $18/mo", pricingType: "freemium", link: "https://veed.io" },
+  "LogoAI":           { desc: "LogoAI generates professional logo designs from your business name and industry. It creates multiple design variations and delivers SVG and PNG files ready for use.", uses: ["Logo creation","Brand identity","Startup branding"], pricing: "Paid", pricingDetail: "One-time purchase from $29", pricingType: "paid", link: "https://logoai.com" },
+  "Looka":            { desc: "Looka is an AI logo and brand identity builder. It creates a complete brand kit including logo, business cards, and social media assets — all consistent with your brand style.", uses: ["Full brand identity","Logo + assets kit","Startup branding"], pricing: "Paid", pricingDetail: "Logo package from $20 (one-time)", pricingType: "paid", link: "https://looka.com" },
+  "NightCafe":        { desc: "NightCafe is an AI art generator with a community focus. It supports many models (Stable Diffusion, DALL·E, etc.) and hosts daily art challenges and a creator community.", uses: ["AI art creation","Community art challenges","Multiple model access"], pricing: "Freemium", pricingDetail: "Free daily credits; paid bundles from $5.99", pricingType: "freemium", link: "https://nightcafe.studio" },
+  "Picsart AI":       { desc: "Picsart is a popular photo and video editing app with AI-powered tools for background removal, image generation, filters, and collage creation. Loved by social media creators.", uses: ["Social media content","Photo editing","AI image gen","Collages"], pricing: "Freemium", pricingDetail: "Free plan; Gold from $5/mo", pricingType: "freemium", link: "https://picsart.com" },
+  "Flair AI":         { desc: "Flair AI is specialized for generating professional product photography. Place your product in AI-generated lifestyle backgrounds without expensive photoshoots.", uses: ["Product photography","E-commerce visuals","Brand lifestyle photos"], pricing: "Freemium", pricingDetail: "Free plan; paid from $10/mo", pricingType: "freemium", link: "https://flair.ai" },
+  "Kaiber":           { desc: "Kaiber creates AI-generated music videos and animated content from images or text prompts. It's popular with musicians and content creators for producing unique visual accompaniments.", uses: ["Music videos","Animated content","Creative visual art"], pricing: "Freemium", pricingDetail: "Free trial; paid from $5/mo", pricingType: "freemium", link: "https://kaiber.ai" },
+  "Animaker AI":      { desc: "Animaker is an AI-powered animation studio that lets you create professional animated videos without motion design skills. It includes characters, scenes, and a voiceover generator.", uses: ["Animated explainer videos","Educational content","Marketing animation"], pricing: "Freemium", pricingDetail: "Free plan (watermark); paid from $12.5/mo", pricingType: "freemium", link: "https://animaker.com" },
+  "Elai.io":          { desc: "Elai.io creates AI presenter videos from slides or text. Upload your PowerPoint, choose an AI avatar, and get a professional video presentation narrated by an AI speaker.", uses: ["Video presentations","E-learning","Corporate comms","Slide to video"], pricing: "Freemium", pricingDetail: "Free plan (1 min); paid from $23/mo", pricingType: "freemium", link: "https://elai.io" },
+  "Lexica":           { desc: "Lexica is an AI image search engine and generator. Search millions of Stable Diffusion images to find the perfect prompt, then generate your own variations.", uses: ["Prompt discovery","Image search","SD image inspiration"], pricing: "Freemium", pricingDetail: "Free searches; paid generation from $8/mo", pricingType: "freemium", link: "https://lexica.art" },
+  "Fotor AI":         { desc: "Fotor is an online photo editor with AI features including background removal, object removal, AI image generation, and portrait retouching.", uses: ["Photo editing","Background removal","AI image gen","Portrait retouching"], pricing: "Freemium", pricingDetail: "Free plan; Pro from $3.33/mo", pricingType: "freemium", link: "https://fotor.com" },
+  "Mage Space":       { desc: "Mage.space is a fast, free Stable Diffusion platform with NSFW-safe and explicit modes. It's popular for its speed and extensive model selection including SDXL.", uses: ["Fast image generation","Multiple SD models","Free Stable Diffusion"], pricing: "Freemium", pricingDetail: "Free plan; paid from $4/mo", pricingType: "freemium", link: "https://mage.space" },
+  "Pixlr AI":         { desc: "Pixlr is a browser-based photo editor (similar to Photoshop Lite) with AI features for background removal, generative fill, and image enhancement. No installation needed.", uses: ["Browser photo editing","Quick image retouching","AI background removal"], pricing: "Freemium", pricingDetail: "Free plan; paid from $7.99/mo", pricingType: "freemium", link: "https://pixlr.com" },
+  "Brandmark":        { desc: "Brandmark is a fully AI-driven logo and brand identity generator. Input your company name and style preferences, and it produces unique, professional logo options.", uses: ["AI logo design","Brand identity","Startup visual identity"], pricing: "Paid", pricingDetail: "One-time from $25", pricingType: "paid", link: "https://brandmark.io" },
+  "Hatchful":         { desc: "Hatchful by Shopify is a free logo maker designed for e-commerce businesses. It's quick, easy, and produces clean logos suitable for online stores.", uses: ["E-commerce logos","Shopify store branding","Free logo creation"], pricing: "Free", pricingDetail: "Completely free", pricingType: "free", link: "https://hatchful.shopify.com" },
+  "Removal.ai":       { desc: "Removal.ai is an AI background remover with bulk processing capabilities. Perfect for e-commerce stores needing to process hundreds of product images at once.", uses: ["Bulk background removal","E-commerce product images","API integration"], pricing: "Freemium", pricingDetail: "Free (low-res); paid from $0.13/image", pricingType: "freemium", link: "https://removal.ai" },
+  "Cleanup.pictures": { desc: "Cleanup.pictures uses AI to remove unwanted objects, people, or text from photos with a simple brush tool. It's incredibly easy and produces clean, seamless results.", uses: ["Object removal","Photo cleanup","Unwanted element removal"], pricing: "Freemium", pricingDetail: "Free (low-res); paid from $7/mo", pricingType: "freemium", link: "https://cleanup.pictures" },
+  "Pixelcut":         { desc: "Pixelcut is a mobile-first AI photo editor for e-commerce product photography. It offers background removal, studio backgrounds, and batch editing optimized for sellers.", uses: ["Mobile product photography","E-commerce sellers","Quick background swap"], pricing: "Freemium", pricingDetail: "Free plan; paid from $7.99/mo", pricingType: "freemium", link: "https://pixelcut.ai" },
+  "Pebblely":         { desc: "Pebblely generates professional product background photos using AI. Upload your product image and get studio-quality lifestyle or clean backgrounds in seconds.", uses: ["Product photography","E-commerce backgrounds","Marketing product shots"], pricing: "Freemium", pricingDetail: "Free (40 images/mo); paid from $19/mo", pricingType: "freemium", link: "https://pebblely.com" },
+  "Booth AI":         { desc: "Booth.ai creates AI-generated model and lifestyle photos for fashion and apparel. Upload your product and get it shown on realistic AI models in various settings.", uses: ["Fashion product photos","AI model photos","Apparel e-commerce"], pricing: "Paid", pricingDetail: "From $39/mo", pricingType: "paid", link: "https://booth.ai" },
+  "Visual Electric":  { desc: "Visual Electric is an AI image generator built specifically for creative professionals. It has a mood board-style interface and emphasizes aesthetic quality and style coherence.", uses: ["Creative professional use","Mood board creation","Aesthetic-focused generation"], pricing: "Freemium", pricingDetail: "Free plan; paid from $16/mo", pricingType: "freemium", link: "https://visualelectric.com" },
+  "Renderforest AI":  { desc: "Renderforest is an all-in-one branding platform for creating logos, animations, websites, and videos. Its AI tools streamline all brand asset creation in one place.", uses: ["Brand assets","Logo animations","Video creation","Website building"], pricing: "Freemium", pricingDetail: "Free plan; paid from $9.99/mo", pricingType: "freemium", link: "https://renderforest.com" },
+  "Logo Diffusion":   { desc: "Logo Diffusion uses Stable Diffusion fine-tuned specifically for logo and icon generation. It produces vector-style logos and icon sets that can be exported to SVG.", uses: ["AI logo design","Icon generation","Vector-style branding"], pricing: "Freemium", pricingDetail: "Free plan; paid from $12/mo", pricingType: "freemium", link: "https://logodiffusion.com" },
+  "LogoMakr":         { desc: "LogoMakr is a simple, browser-based logo creator with a growing library of icons and fonts. It has basic AI layout suggestions and is suitable for DIY brand creation.", uses: ["DIY logo creation","Simple branding","Quick logo for startups"], pricing: "Freemium", pricingDetail: "Free (with watermark); paid from $19 one-time", pricingType: "freemium", link: "https://logomakr.com" },
+
+  // ── BACKEND ──
+  "Supabase":         { desc: "Supabase is an open-source Firebase alternative built on PostgreSQL. It provides a full backend-as-a-service: database, authentication, storage, real-time subscriptions, and edge functions — all with a generous free tier.", uses: ["Full-stack apps","Real-time databases","Auth + database combo","Open-source projects"], pricing: "Freemium", pricingDetail: "Free plan (500MB DB); paid from $25/mo", pricingType: "freemium", link: "https://supabase.com" },
+  "Firebase":         { desc: "Firebase by Google is the most popular backend platform for mobile and web apps. It offers a real-time NoSQL database, authentication, cloud functions, hosting, and analytics — all integrated in one ecosystem.", uses: ["Mobile apps","Real-time apps","Google ecosystem projects","Rapid prototyping"], pricing: "Freemium", pricingDetail: "Free Spark plan; Blaze plan pay-as-you-go", pricingType: "freemium", link: "https://firebase.google.com" },
+  "Appwrite":         { desc: "Appwrite is a self-hostable, open-source backend platform with auth, databases, functions, storage, and messaging. It's the privacy-first alternative to Firebase with full data control.", uses: ["Self-hosted backends","Privacy-focused apps","Firebase alternative"], pricing: "Freemium", pricingDetail: "Free (self-host); Cloud from $15/mo", pricingType: "freemium", link: "https://appwrite.io" },
+  "Xano":             { desc: "Xano is a no-code backend builder for creating scalable APIs and databases visually. It's the backend of choice for many no-code full-stack builders (Webflow, Bubble, WeWeb, etc.).", uses: ["No-code API creation","Backend for no-code stacks","Database + API builder"], pricing: "Freemium", pricingDetail: "Free (1 workspace); paid from $25/mo", pricingType: "freemium", link: "https://xano.com" },
+  "Hasura":           { desc: "Hasura instantly generates a GraphQL (and REST) API on top of your existing PostgreSQL database. It's blazing fast, supports real-time subscriptions, and requires minimal configuration.", uses: ["GraphQL APIs","Database → API conversion","Real-time subscriptions"], pricing: "Freemium", pricingDetail: "Free cloud plan; paid from $99/mo", pricingType: "freemium", link: "https://hasura.io" },
+  "PocketBase":       { desc: "PocketBase is a single-file open-source backend written in Go. It includes a database, auth, file storage, and an admin UI — perfect for small to medium projects that need a lightweight backend.", uses: ["Lightweight backend","Open-source projects","Single-server deployments","Side projects"], pricing: "Free", pricingDetail: "Completely free and open-source", pricingType: "free", link: "https://pocketbase.io" },
+  "Convex":           { desc: "Convex is a reactive backend as a service that automatically syncs state between your database and your app in real-time. Functions run in TypeScript and the whole backend is TypeScript-typed.", uses: ["Real-time apps","TypeScript backends","Reactive state management"], pricing: "Freemium", pricingDetail: "Free plan; paid from $25/mo", pricingType: "freemium", link: "https://convex.dev" },
+  "Neon":             { desc: "Neon is a serverless PostgreSQL database that scales to zero when not in use. It has branching (like Git for databases), making it ideal for development workflows and staging environments.", uses: ["Serverless Postgres","Database branching","Scalable DB","Free-tier projects"], pricing: "Freemium", pricingDetail: "Free tier (0.5GB); paid from $19/mo", pricingType: "freemium", link: "https://neon.tech" },
+  "Railway":          { desc: "Railway is a modern cloud deployment platform that lets you deploy any app, database, or service from GitHub with zero configuration. It's the developer-friendly Heroku replacement.", uses: ["App deployment","Database hosting","CI/CD integration","Full-stack deployment"], pricing: "Freemium", pricingDetail: "Free trial ($5 credit); paid from $5/mo", pricingType: "freemium", link: "https://railway.app" },
+  "Render":           { desc: "Render is a unified cloud platform for hosting web services, APIs, databases, cron jobs, and static sites. It deploys from GitHub automatically and offers a generous free tier for web services.", uses: ["Web service hosting","Static site hosting","Scheduled jobs","Docker deployment"], pricing: "Freemium", pricingDetail: "Free tier for static sites; paid from $7/mo", pricingType: "freemium", link: "https://render.com" },
+  "Fly.io":           { desc: "Fly.io deploys Docker containers close to your users at the edge, in 30+ regions worldwide. It's the go-to platform for latency-sensitive apps and globally distributed backends.", uses: ["Edge deployment","Low-latency apps","Docker hosting","Global distribution"], pricing: "Freemium", pricingDetail: "Free allowance; paid from $0.02/GB RAM/hr", pricingType: "freemium", link: "https://fly.io" },
+  "MongoDB Atlas AI": { desc: "MongoDB Atlas is the cloud version of MongoDB with built-in AI features including Vector Search for RAG applications and Atlas AI for natural language database queries.", uses: ["NoSQL cloud database","Vector search for AI apps","Flexible document storage"], pricing: "Freemium", pricingDetail: "Free M0 cluster; paid from $9/mo", pricingType: "freemium", link: "https://mongodb.com/atlas" },
+  "Clerk":            { desc: "Clerk is the most popular authentication and user management platform for modern web apps. It provides drop-in UI components for sign-in, sign-up, and user profiles with zero backend work.", uses: ["User authentication","Sign-in UI components","Next.js auth"], pricing: "Freemium", pricingDetail: "Free (10,000 MAU); paid from $25/mo", pricingType: "freemium", link: "https://clerk.com" },
+  "Auth0":            { desc: "Auth0 (by Okta) is the enterprise standard for authentication and identity management. It supports social login, MFA, enterprise SSO, and complex security requirements out of the box.", uses: ["Enterprise authentication","Social login","MFA implementation","SSO"], pricing: "Freemium", pricingDetail: "Free (7,500 MAU); paid from $23/mo", pricingType: "freemium", link: "https://auth0.com" },
+  "Prisma AI":        { desc: "Prisma is the most popular ORM (Object-Relational Mapper) for Node.js and TypeScript. Its Prisma AI features help generate schema definitions and queries from natural language.", uses: ["Database ORM","TypeScript/Node.js backends","Schema generation"], pricing: "Free", pricingDetail: "Free and open-source ORM; Prisma Data Platform has paid tiers", pricingType: "free", link: "https://prisma.io" },
+  "Turso":            { desc: "Turso provides edge-hosted SQLite databases with sub-millisecond latency worldwide. Built on libSQL (an open-source fork of SQLite), it's the database for edge computing.", uses: ["Edge SQLite","Global database distribution","Low-latency reads"], pricing: "Freemium", pricingDetail: "Free (8GB storage); paid from $29/mo", pricingType: "freemium", link: "https://turso.tech" },
+  "Stytch":           { desc: "Stytch offers passwordless authentication solutions — magic links, passcodes, biometrics, and OAuth — with a developer-first API. Ideal for modern apps wanting frictionless login.", uses: ["Passwordless auth","Magic link login","Frictionless authentication"], pricing: "Freemium", pricingDetail: "Free (25,000 MAU); paid from $99/mo", pricingType: "freemium", link: "https://stytch.com" },
+  "WorkOS":           { desc: "WorkOS is the enterprise auth and identity platform, providing SSO, SCIM provisioning, and audit logs that enterprise customers require. Makes B2B SaaS enterprise-ready.", uses: ["Enterprise SSO","SAML integration","B2B SaaS auth"], pricing: "Freemium", pricingDetail: "Free (1M MAU); paid for enterprise features", pricingType: "freemium", link: "https://workos.com" },
+  "Kinde":            { desc: "Kinde is a modern authentication platform offering a more generous free tier than Auth0. It supports MFA, roles & permissions, and has excellent Next.js and framework integrations.", uses: ["Modern auth","Free Auth0 alternative","Roles & permissions"], pricing: "Freemium", pricingDetail: "Free (10,500 MAU); paid from $25/mo", pricingType: "freemium", link: "https://kinde.com" },
+  "PostHog AI":       { desc: "PostHog is an open-source product analytics platform with session recording, feature flags, A/B testing, and now AI-powered insight generation. Self-host for complete data ownership.", uses: ["Product analytics","Session recording","Feature flags","A/B testing"], pricing: "Freemium", pricingDetail: "Free (1M events/mo); paid for higher limits", pricingType: "freemium", link: "https://posthog.com" },
+  "Trigger.dev":      { desc: "Trigger.dev is an open-source platform for running reliable background jobs and scheduled tasks in your Node.js app. It's designed to replace makeshift queuing solutions.", uses: ["Background jobs","Scheduled tasks","Reliable queuing","Webhook processing"], pricing: "Freemium", pricingDetail: "Free (self-host or 5 jobs); paid from $30/mo", pricingType: "freemium", link: "https://trigger.dev" },
+  "Pipedream":        { desc: "Pipedream is an API automation and integration platform with 1,000+ built-in app connectors. Build workflows that trigger from webhooks, schedules, or app events with AI assistance.", uses: ["API automation","App integration","Webhook workflows","Trigger-based automation"], pricing: "Freemium", pricingDetail: "Free (100 invocations/day); paid from $29/mo", pricingType: "freemium", link: "https://pipedream.com" },
+  "Zapier AI":        { desc: "Zapier is the world's most popular no-code automation tool, connecting 7,000+ apps. Its AI features build automations (Zaps) from plain English descriptions and include an AI chatbot builder.", uses: ["App automation","7000+ integrations","No-code workflows","AI chatbot creation"], pricing: "Freemium", pricingDetail: "Free (100 tasks/mo); paid from $19.99/mo", pricingType: "freemium", link: "https://zapier.com" },
+  "Make AI":          { desc: "Make (formerly Integromat) is a visual automation platform for complex multi-step workflows. It's more powerful than Zapier for advanced logic and is popular among power users and agencies.", uses: ["Complex automations","Visual workflow builder","Agency workflows","Data transformation"], pricing: "Freemium", pricingDetail: "Free (1,000 ops/mo); paid from $9/mo", pricingType: "freemium", link: "https://make.com" },
+  "n8n AI":           { desc: "n8n is an open-source, self-hostable workflow automation tool. It has 350+ integrations and supports custom AI agents. Self-host for free with no usage limits.", uses: ["Self-hosted automation","Custom AI workflows","Privacy-first integration"], pricing: "Freemium", pricingDetail: "Free (self-host); Cloud from $20/mo", pricingType: "freemium", link: "https://n8n.io" },
+  "Langflow":         { desc: "Langflow is an open-source UI for building LangChain AI pipelines visually. Drag and drop components to create complex AI apps — RAG, agents, chatbots — without coding.", uses: ["LangChain visual builder","RAG applications","AI agent creation","No-code LLM apps"], pricing: "Free", pricingDetail: "Free and open-source; DataStax cloud hosting available", pricingType: "free", link: "https://langflow.org" },
+  "AWS Amplify AI":   { desc: "AWS Amplify Gen 2 lets you build full-stack cloud apps with TypeScript. The AI kit adds conversational UI, AI routes, and inference backends to your Amplify apps.", uses: ["AWS full-stack apps","AI features on AWS","TypeScript cloud apps"], pricing: "Freemium", pricingDetail: "Free tier; pay-as-you-go AWS pricing", pricingType: "freemium", link: "https://aws.amazon.com/amplify" },
+  "Strapi AI":        { desc: "Strapi is the world's most popular open-source headless CMS. It generates a REST and GraphQL API from your content types and is used by thousands of companies for content-driven apps.", uses: ["Headless CMS","Content APIs","Node.js content management"], pricing: "Freemium", pricingDetail: "Free (self-host); Cloud from $29/mo", pricingType: "freemium", link: "https://strapi.io" },
+  "Sanity AI":        { desc: "Sanity is a headless CMS with a real-time structured content store. Its AI features help with content generation inside the Sanity Studio, and it has strong CDN delivery for global content.", uses: ["Structured content management","Global content delivery","Real-time collaboration"], pricing: "Freemium", pricingDetail: "Free plan (3 users); paid from $15/mo", pricingType: "freemium", link: "https://sanity.io" },
+  "Directus":         { desc: "Directus is an open-source headless CMS and backend-as-a-service that wraps any SQL database in a REST and GraphQL API with a beautiful admin interface.", uses: ["Headless CMS","SQL to API","Custom admin panels","Open-source backend"], pricing: "Freemium", pricingDetail: "Free (self-host); Cloud from $15/mo", pricingType: "freemium", link: "https://directus.io" },
+  "Contentful AI":    { desc: "Contentful is an enterprise headless CMS with AI content generation and translation features. It powers content delivery for large brands with complex, multi-channel requirements.", uses: ["Enterprise content management","Multi-channel delivery","Content translation"], pricing: "Freemium", pricingDetail: "Free (5 users); paid from $300/mo", pricingType: "freemium", link: "https://contentful.com" },
+  "Activepieces":     { desc: "Activepieces is an open-source Zapier alternative you can self-host. It has 100+ integrations and supports building automation flows with a simple visual editor — fully private.", uses: ["Self-hosted automation","Open-source Zapier alt","Business process automation"], pricing: "Freemium", pricingDetail: "Free (self-host); Cloud from $9/mo", pricingType: "freemium", link: "https://activepieces.com" },
+  "Encore.dev":       { desc: "Encore.dev is a TypeScript/Go backend framework that auto-provisions cloud infrastructure (AWS/GCP) from your code. Write backend logic, and Encore handles the cloud deployment automatically.", uses: ["Auto-provisioned cloud backends","TypeScript cloud apps","Infrastructure-as-code alternative"], pricing: "Freemium", pricingDetail: "Free hobby plan; paid from $49/mo", pricingType: "freemium", link: "https://encore.dev" },
+  "Permit.io":        { desc: "Permit.io is an authorization-as-a-service platform that lets you implement role-based and attribute-based access control without building it from scratch.", uses: ["Authorization/permissions","RBAC implementation","Multi-tenant access control"], pricing: "Freemium", pricingDetail: "Free (1,000 monthly active users); paid custom pricing", pricingType: "freemium", link: "https://permit.io" },
+  "PlanetScale":      { desc: "PlanetScale is a MySQL-compatible serverless database platform with Git-like branching workflows. Known for handling massive scale (millions of QPS) with ease.", uses: ["MySQL at scale","Database branching","Serverless MySQL","High-traffic apps"], pricing: "Freemium", pricingDetail: "Free plan (5GB); paid from $39/mo", pricingType: "freemium", link: "https://planetscale.com" },
+  "Nhost":            { desc: "Nhost is an open-source Firebase alternative with Postgres, GraphQL (Hasura), storage, auth, and serverless functions — all in one platform.", uses: ["Firebase alternative","Postgres + GraphQL","Full backend in one"], pricing: "Freemium", pricingDetail: "Free plan; paid from $25/mo", pricingType: "freemium", link: "https://nhost.io" },
+  "Descope":          { desc: "Descope is a no-code authentication platform where you design auth flows visually. It handles passwordless, MFA, SSO, and social login with drag-and-drop flow builders.", uses: ["No-code auth flows","Visual authentication design","Passwordless + SSO"], pricing: "Freemium", pricingDetail: "Free (7,500 MAU); paid from $295/mo for enterprise", pricingType: "freemium", link: "https://descope.com" },
+  "PropelAuth":       { desc: "PropelAuth is built specifically for B2B SaaS apps. It handles organization management, role-based permissions, and team-based authentication out of the box.", uses: ["B2B SaaS auth","Organization management","Team-based permissions"], pricing: "Freemium", pricingDetail: "Free (up to 1,000 users); paid from $99/mo", pricingType: "freemium", link: "https://propelauth.com" },
+  "FusionAuth":       { desc: "FusionAuth is a complete, self-hostable customer identity platform. Run it on your own servers for GDPR compliance, or use their cloud offering.", uses: ["Self-hosted identity","GDPR-compliant auth","Enterprise auth"], pricing: "Freemium", pricingDetail: "Free (self-host); paid cloud from $37/mo", pricingType: "freemium", link: "https://fusionauth.io" },
+  "Backendless":      { desc: "Backendless is a visual app development platform with a full backend including database, API, auth, push notifications, and file storage — all managed through a visual interface.", uses: ["Visual backend building","No-code BaaS","Mobile backend"], pricing: "Freemium", pricingDetail: "Free plan; paid from $15/mo", pricingType: "freemium", link: "https://backendless.com" },
+  "Hygraph AI":       { desc: "Hygraph (formerly GraphCMS) is a federated GraphQL content management platform. It lets you stitch multiple APIs and content sources into one unified GraphQL schema.", uses: ["GraphQL CMS","Content federation","API stitching"], pricing: "Freemium", pricingDetail: "Free plan; paid from $299/mo", pricingType: "freemium", link: "https://hygraph.com" },
+  "Payload CMS":      { desc: "Payload CMS is a TypeScript-first headless CMS that lives in your codebase. Fully open-source, self-hosted, and gives you complete control over your content model and admin UI.", uses: ["TypeScript CMS","Self-hosted content","Custom admin UI"], pricing: "Free", pricingDetail: "Free and open-source", pricingType: "free", link: "https://payloadcms.com" },
+  "OpenFaaS":         { desc: "OpenFaaS is an open-source serverless functions framework that runs on Kubernetes or Docker Swarm. Deploy any function in any language to your own infrastructure.", uses: ["Self-hosted serverless","Custom function deployment","Kubernetes functions"], pricing: "Free", pricingDetail: "Free and open-source", pricingType: "free", link: "https://openfaas.com" },
+  "Firebase Studio": { desc: "Firebase Studio (formerly Project IDX) is Google's AI-powered browser-based development environment. It connects directly to Firebase and Google Cloud for full-stack development in the browser.", uses: ["Google cloud development","Browser-based IDE","Firebase integration"], pricing: "Freemium", pricingDetail: "Free beta; pricing TBD", pricingType: "freemium", link: "https://firebase.studio" },
+  "Azure AI Studio":  { desc: "Azure AI Studio is Microsoft's platform for building, evaluating, and deploying AI models and applications. It provides access to OpenAI models plus Azure's own AI capabilities.", uses: ["Enterprise AI development","Azure AI model deployment","GPT-4 on Azure"], pricing: "Freemium", pricingDetail: "Pay-as-you-go; free tier for some services", pricingType: "freemium", link: "https://ai.azure.com" },
+  "Appsmith":         { desc: "Appsmith is an open-source framework for building admin panels and internal tools. Connect to any database or API, build a UI visually, and deploy — self-host for free.", uses: ["Admin panels","Internal dashboards","Database UIs"], pricing: "Freemium", pricingDetail: "Free (self-host); Cloud from $40/mo", pricingType: "freemium", link: "https://appsmith.com" },
+  "Retool":           { desc: "Retool is the fastest way to build internal tools. Connect to databases and APIs, build UIs with drag-and-drop, and ship tools in hours instead of weeks.", uses: ["Internal tools","Admin dashboards","Data-connected UIs"], pricing: "Freemium", pricingDetail: "Free (5 users); paid from $10/user/mo", pricingType: "freemium", link: "https://retool.com" },
+  "ToolJet":          { desc: "ToolJet is an open-source Retool alternative. Self-host for free or use their cloud. Connect to databases, APIs, and SaaS tools to build internal apps visually.", uses: ["Internal tools","Open-source Retool alt","Self-hosted dashboards"], pricing: "Freemium", pricingDetail: "Free self-host; Cloud from $20/mo", pricingType: "freemium", link: "https://tooljet.com" },
+};
+
+/* ─────────────────────────────────────
+   DATA
+───────────────────────────────────── */
+const DATA = {
+  builders: [
+    ["Wix AI","No-code"], ["Framer AI","Visual builder"], ["Durable","1-click site"],
+    ["10Web","WP builder"], ["Hostinger AI Builder","Hosting+AI"], ["Jimdo AI","Simple sites"],
+    ["Webflow AI","Designer tool"], ["Squarespace AI","Portfolio"], ["B12","Professional sites"],
+    ["Hocoos","Small biz"], ["Zyro","E-commerce"], ["Bookmark AiDA","Adaptive AI"],
+    ["Site123 AI","Drag & drop"], ["TeleportHQ","Code export"], ["Unicorn Platform","Startups"],
+    ["Mixo","MVP sites"], ["Typedream","Notion-style"], ["Dorik AI","Agency sites"],
+    ["Butternut AI","Instant sites"], ["Gamma Sites","Presentations"], ["Pineapple Builder","Indie"],
+    ["Leia AI","Smart layouts"], ["Yola AI","Small biz"], ["Appy Pie Website","App+web"],
+    ["Renderforest AI","Brand sites"], ["Branchbob","E-commerce"], ["Mobirise AI","Desktop app"],
+    ["Carrd AI","Single page"], ["Softr","No-code apps"], ["Glide","Data-driven apps"],
+    ["Landingsite AI","Landing pages"], ["Weblium","Agency"], ["Sitekick","Copywriter+"],
+    ["Builder.ai","Enterprise"], ["Relume","Component library"], ["Ucraft AI","Multilingual"],
+    ["Stunning.so","Newsletter sites"], ["Zarla","Local biz"], ["Webnode AI","Multilingual"],
+    ["Duda AI","Agency platform"], ["Tilda AI","Editorial"], ["Simvoly","Sales funnels"],
+    ["Elementor AI","WordPress"], ["Divi AI","WP theme"], ["SeedProd AI","Landing pages"],
+    ["Brizy AI","Page builder"], ["GoDaddy AI Websites","Hosting+AI"], ["Studio Design AI","Brand"],
+    ["Lindo AI","Micro-sites"], ["Ycode AI","Visual dev"]
+  ],
+  coders: [
+    ["ChatGPT","General AI"], ["Claude","Anthropic AI"], ["Gemini","Google AI"],
+    ["GitHub Copilot","Inline AI"], ["Cursor","AI editor"], ["Windsurf","Codeium editor"],
+    ["Codeium","Free Copilot"], ["Tabnine","Team AI"], ["Amazon Q Developer","AWS AI"],
+    ["Replit AI","Browser IDE"], ["Cody","Sourcegraph"], ["Blackbox AI","Code search"],
+    ["Sourcegraph Cody","Enterprise"], ["Continue.dev","Open source"], ["Mutable AI","Refactor"],
+    ["AskCodi","Explainer"], ["CodiumAI","Test gen"], ["Pieces AI","Snippet mgr"],
+    ["Phind","Developer search"], ["CodeGeeX","Multilingual"], ["MarsCode","ByteDance"],
+    ["JetBrains AI","IDE plugin"], ["Intellicode","Microsoft"], ["Codiga","Static analysis"],
+    ["FauxPilot","Self-hosted"], ["PearAI","Open source"], ["Sweep AI","PR automation"],
+    ["Bito AI","Review+"], ["Aider","CLI coding"], ["GPT Engineer","Scaffold"],
+    ["Smol Developer","Autonomous"], ["Devika AI","AI engineer"], ["OpenDevin","Open agent"],
+    ["Bolt AI","In-browser"], ["Cursor Composer","Multi-file"], ["Tabby","Self-hosted"],
+    ["Supermaven","Fast tokens"], ["SourceAI","Generate code"], ["CodeWP","WordPress"],
+    ["AI2SQL","SQL gen"], ["SQLAI","Query gen"], ["Quest AI","React gen"],
+    ["HeyBoss AI","PM mode"], ["Cogram","Meeting+code"], ["Safurai","Multilingual"],
+    ["Refact AI","Open source"], ["DeepCode AI","Security"], ["Ponicode","Unit tests"],
+    ["Qodo","Quality focus"], ["CodeRabbit","PR review"]
+  ],
+  fullstack: [
+    ["Lovable","Vibe coding"], ["Bolt.new","Instant apps"], ["v0","Vercel UI"],
+    ["Base44","Full-stack gen"], ["Replit","Browser IDE"], ["Builder.ai","Enterprise"],
+    ["Softr","Airtable apps"], ["Glide","Sheets apps"], ["Bubble AI","Visual dev"],
+    ["FlutterFlow AI","Mobile+web"], ["Appsmith AI","Internal tools"], ["Retool AI","Dashboards"],
+    ["DhiWise","Flutter/React"], ["Draftbit","React Native"], ["Appy Pie AI","App maker"],
+    ["Adalo AI","Mobile apps"], ["OutSystems AI","Enterprise"], ["Mendix AI","Low-code"],
+    ["Zoho Creator AI","Business apps"], ["SAP Build AI","Enterprise"], ["Backendless AI","BaaS"],
+    ["Budibase","Open source"], ["ToolJet AI","Internal tools"], ["Pipedream AI","Automation"],
+    ["Xano AI","No-code backend"], ["Noodl","Visual React"], ["WeWeb","Frontend+"],
+    ["Superblocks","Internal tools"], ["Create.xyz","Instant apps"], ["Questflow","AI agents"],
+    ["TeleportHQ","Design+code"], ["Buzzy","Figma to app"], ["Bravo Studio","Figma mobile"],
+    ["BuildShip","AI workflows"], ["Plasmic","Visual React"], ["Refine AI","React framework"],
+    ["Locofy","Design to code"], ["Fronty","Image to HTML"], ["Stacker AI","Client portals"],
+    ["AppMaster","Enterprise"], ["Caspio AI","Database apps"], ["Jotform Apps","Form apps"],
+    ["Knack AI","Database apps"], ["Rows AI","Spreadsheet apps"], ["Noloco","Internal tools"],
+    ["Pory","Airtable sites"], ["Fillout AI","Smart forms"], ["Softr Studio","Portals"],
+    ["Typedream Apps","Web apps"], ["Flowise","LLM flows"]
+  ],
+  design: [
+    ["Figma AI","Industry standard"], ["Galileo AI","Text to UI"], ["Uizard","Wireframe AI"],
+    ["Visily","Screenshot to UI"], ["Framer AI","Motion design"], ["Relume","Component lib"],
+    ["Motiff","AI first Figma"], ["Diagram AI","Plugins"], ["Magician","Figma plugin"],
+    ["Khroma","Color AI"], ["Attention Insight","Eye-tracking AI"], ["Genius UI","Component gen"],
+    ["Mockplus AI","Prototyping"], ["UX Pilot","AI copilot"], ["FlowMapp AI","Sitemaps"],
+    ["Maze AI","User testing"], ["FigJam AI","Whiteboard"], ["Canva AI","Easy design"],
+    ["Adobe Express AI","Quick graphics"], ["Adobe Firefly","Creative suite"],
+    ["Fronty","Image to CSS"], ["Designs.ai","Brand kit"], ["Penpot AI","Open source"],
+    ["UXPin AI","Code components"], ["TeleportHQ","Design+dev"], ["Locofy","To React"],
+    ["Builder.io","Visual CMS"], ["Zeplin AI","Handoff"], ["Wireframe Designer AI","Quick wireframes"],
+    ["Dora AI","3D motion"], ["Siter.io","Responsive AI"], ["Designspark AI","PCB+web"],
+    ["Microsoft Designer","Office AI"], ["Vercel v0","shadcn/ui gen"], ["Pixso AI","Collaborative"],
+    ["Lunacy AI","Free Figma alt"], ["InVision AI","Prototyping"], ["Creatie AI","New entrant"],
+    ["Jitter AI","Motion"], ["Sketch AI","Mac design"], ["VisualEyes","Heatmaps"],
+    ["Stark AI","Accessibility"], ["Hotjar AI","Behavior AI"], ["Miro AI","Collaboration"],
+    ["Whimsical AI","Flowcharts"], ["Balsamiq AI","Sketchy wireframes"], ["Proto.io AI","Interactive"],
+    ["Justinmind AI","Prototyping"], ["Overflow AI","User flows"], ["UXCam AI","Mobile UX"]
+  ],
+  assets: [
+    ["Midjourney","Best quality"], ["DALL·E","OpenAI"], ["Adobe Firefly","Commercial safe"],
+    ["Canva AI","Easy assets"], ["Leonardo AI","Game art"], ["Ideogram","Text in images"],
+    ["Flux AI","Fast gen"], ["Recraft","Vector AI"], ["Playground AI","Free tier"],
+    ["DreamStudio","Stable Diff"], ["Bing Image Creator","Free"], ["Stable Diffusion","Open source"],
+    ["Craiyon","Free fun"], ["NightCafe","Art styles"], ["Krea AI","Real-time"],
+    ["Mage Space","NSFW safe"], ["Artbreeder","Blend images"], ["Lexica","Search+gen"],
+    ["Fotor AI","Photo editor"], ["Pixlr AI","Browser editor"], ["Designs.ai","Full brand kit"],
+    ["LogoAI","Logo gen"], ["Looka","Brand identity"], ["Brandmark","Logo AI"],
+    ["Hatchful","Shopify logos"], ["LogoMakr","Simple logos"], ["Logo Diffusion","Diffusion logos"],
+    ["Uizard Assets","UI assets"], ["Removal.ai","BG remove"], ["Remove.bg","Classic BG"],
+    ["Clipdrop","Stable Diff tools"], ["Cleanup.pictures","Object remove"], ["Photoroom","Product shots"],
+    ["Picsart AI","Social media"], ["Pixelcut","E-commerce"], ["Pebblely","Product BG"],
+    ["Booth AI","Model photos"], ["Flair AI","Brand photos"], ["Visual Electric","Creative gen"],
+    ["Kaiber","Video+image"], ["Runway","Video gen"], ["Pika","Text to video"],
+    ["Luma AI","3D+video"], ["Animaker AI","Animation"], ["Renderforest AI","Intros+logos"],
+    ["Invideo AI","Video creation"], ["Veed AI","Video edit"], ["Synthesia","AI avatar video"],
+    ["HeyGen","Talking avatars"], ["Elai.io","Video slides"]
+  ],
+  backend: [
+    ["Supabase","Open source BaaS"], ["Firebase","Google BaaS"], ["Appwrite","Self-host BaaS"],
+    ["Xano","No-code backend"], ["Backendless","Visual backend"], ["Hasura","GraphQL AI"],
+    ["PocketBase","Go backend"], ["Nhost","Postgres+"], ["Convex","Reactive DB"],
+    ["Neon","Serverless Postgres"], ["PlanetScale","MySQL scale"], ["Railway","Deploy anything"],
+    ["Render","Cloud host"], ["Fly.io","Edge deploy"], ["MongoDB Atlas AI","NoSQL cloud"],
+    ["Prisma AI","ORM AI"], ["Turso","Edge SQLite"], ["Clerk","Auth platform"],
+    ["Auth0","Enterprise auth"], ["Stytch","Passwordless"], ["WorkOS","Enterprise SSO"],
+    ["Kinde","Modern auth"], ["FusionAuth","Self-host auth"], ["PropelAuth","B2B auth"],
+    ["Descope","Flow auth"], ["Permit.io","Authorization"], ["PostHog AI","Analytics"],
+    ["Trigger.dev","Background jobs"], ["Pipedream","API automation"], ["Zapier AI","No-code auto"],
+    ["Make AI","Visual automation"], ["n8n AI","Open source auto"], ["Activepieces","Self-host auto"],
+    ["Langflow","LLM flows"], ["Flowise","Chatflow builder"], ["OpenFaaS","Serverless"],
+    ["Encore.dev","Backend framework"], ["AWS Amplify AI","AWS stack"], ["Azure AI Studio","MS stack"],
+    ["Firebase Studio","Google stack"], ["Appsmith","Internal tools"], ["Retool","Dashboards"],
+    ["Budibase","Open source"], ["ToolJet","Self-host tools"], ["Directus","Headless CMS"],
+    ["Strapi AI","Node CMS"], ["Payload CMS","TypeScript CMS"], ["Sanity AI","Structured content"],
+    ["Contentful AI","Enterprise CMS"], ["Hygraph AI","GraphQL CMS"]
+  ],
+  top20: [
+    "ChatGPT","Claude","Gemini","Cursor","Lovable","Bolt.new","v0","Replit",
+    "Base44","Framer AI","Webflow AI","Wix AI","Supabase","Firebase",
+    "Figma AI","Relume","FlutterFlow AI","GitHub Copilot","Claude Code","Windsurf"
+  ]
+};
+
+const CAT_META = {
+  builders:  { color: "#a78bff", bg: "rgba(108,71,255,0.15)", label: "🏗 Website Builder" },
+  coders:    { color: "#5ee7ff", bg: "rgba(0,210,255,0.12)",  label: "💻 Coding Assistant" },
+  fullstack: { color: "#ff9b70", bg: "rgba(255,107,53,0.12)", label: "⚡ Full-Stack Builder" },
+  design:    { color: "#ff6fa8", bg: "rgba(255,45,120,0.12)", label: "🎨 UI/UX Design" },
+  assets:    { color: "#ffe070", bg: "rgba(255,210,63,0.12)", label: "🖼 Asset Generator" },
+  backend:   { color: "#5bdf8c", bg: "rgba(39,201,110,0.12)", label: "🛢 Backend & Database" }
+};
+
+/* ─────────────────────────────────────
+   MODAL LOGIC
+───────────────────────────────────── */
+const overlay  = document.getElementById('modalOverlay');
+const modal    = document.getElementById('modal');
+const closeBtn = document.getElementById('modalClose');
+
+function openModal(name, category) {
+  const info = DETAILS[name] || {};
+  const meta = CAT_META[category] || CAT_META.builders;
+
+  // Badge
+  const badge = document.getElementById('modalBadge');
+  badge.textContent = meta.label;
+  badge.style.background = meta.bg;
+  badge.style.borderColor = meta.color + '55';
+  badge.style.color = meta.color;
+
+  document.getElementById('modalName').textContent = name;
+  document.getElementById('modalTagline').textContent = info.desc
+    ? info.desc.split('.')[0] + '.'
+    : "A powerful AI tool for developers and creators.";
+
+  document.getElementById('modalDesc').textContent = info.desc ||
+    `${name} is an AI-powered tool in the ${meta.label} category. It helps developers and creators work faster and smarter.`;
+
+  // Use cases chips
+  const ucContainer = document.getElementById('modalUseCases');
+  ucContainer.innerHTML = '';
+  const uses = info.uses || ["AI assistance", "Productivity", "Automation", "Development"];
+  uses.forEach(u => {
+    const chip = document.createElement('span');
+    chip.className = 'use-case-chip';
+    chip.textContent = u;
+    ucContainer.appendChild(chip);
+  });
+
+  // Pricing block
+  const pricingEl = document.getElementById('modalPricing');
+  const pType = info.pricingType || 'freemium';
+  pricingEl.className = 'modal-pricing pricing-' + pType;
+
+  const icons = { free: '🎉', freemium: '⚡', paid: '💳', enterprise: '🏢' };
+  const pLabels = { free: 'FREE', freemium: 'FREE + PAID', paid: 'PAID', enterprise: 'ENTERPRISE' };
+  document.getElementById('modalPricingIcon').textContent = icons[pType] || '💳';
+  document.getElementById('modalPricingLabel').textContent = pLabels[pType] || 'FREEMIUM';
+  document.getElementById('modalPricingDetail').textContent = info.pricingDetail || 'Check official website for current pricing';
+
+  // Link
+  const link = document.getElementById('modalLink');
+  if (info.link) {
+    link.href = info.link;
+    link.style.display = 'inline-flex';
+  } else {
+    link.href = `https://www.google.com/search?q=${encodeURIComponent(name + ' AI tool')}`;
+    link.textContent = 'Search for ' + name + ' →';
+    link.style.display = 'inline-flex';
+  }
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+closeBtn.addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ─────────────────────────────────────
+   RENDER
+───────────────────────────────────── */
+function renderTools(gridId, tools, category) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  tools.forEach(([name, tag], i) => {
+    const card = document.createElement('div');
+    card.className = 'tool-card';
+    card.dataset.name = name.toLowerCase();
+    card.dataset.category = category;
+    card.innerHTML = `
+      <span class="tool-num">${String(i + 1).padStart(2,'0')}</span>
+      <div class="tool-card-inner">
+        <div class="tool-name">${name}</div>
+        <div class="tool-tag">${tag}</div>
+        <div class="tool-click-hint">
+          <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 1l4 4-4 4M1 5h8" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          tap for details
+        </div>
+      </div>
+    `;
+    card.addEventListener('click', () => openModal(name, category));
+    grid.appendChild(card);
+  });
+}
+
+function renderTop20(tools) {
+  const grid = document.getElementById('grid-top20');
+  if (!grid) return;
+  tools.forEach((name, i) => {
+    const card = document.createElement('div');
+    card.className = 'top20-card';
+    card.innerHTML = `<span class="top20-rank">#${String(i + 1).padStart(2,'0')}</span><span class="top20-name">${name}</span>`;
+    card.addEventListener('click', () => {
+      // find the category
+      let cat = 'builders';
+      for (const [key, arr] of Object.entries(DATA)) {
+        if (key === 'top20') continue;
+        if (arr.some(([n]) => n === name)) { cat = key; break; }
+      }
+      openModal(name, cat);
+    });
+    grid.appendChild(card);
+  });
+}
+
+renderTools('grid-builders',  DATA.builders,  'builders');
+renderTools('grid-coders',    DATA.coders,    'coders');
+renderTools('grid-fullstack', DATA.fullstack, 'fullstack');
+renderTools('grid-design',    DATA.design,    'design');
+renderTools('grid-assets',    DATA.assets,    'assets');
+renderTools('grid-backend',   DATA.backend,   'backend');
+renderTop20(DATA.top20);
+
+/* ─────────────────────────────────────
+   SEARCH
+───────────────────────────────────── */
+const searchInput = document.getElementById('searchInput');
+const searchCount = document.getElementById('searchCount');
+const allCards    = () => document.querySelectorAll('.tools-grid .tool-card');
+
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  let visible = 0;
+  allCards().forEach(card => {
+    const match = !q || card.dataset.name.includes(q);
+    card.classList.toggle('hidden', !match);
+    if (match) visible++;
+  });
+  searchCount.textContent = q ? `${visible} found` : '';
+});
+
+/* ─────────────────────────────────────
+   SCROLL & ANIMATIONS
+───────────────────────────────────── */
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.tool-card').forEach((card, i) => {
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(12px)';
+  card.style.transition = `opacity 0.35s ease ${(i % 12) * 0.04}s, transform 0.35s ease ${(i % 12) * 0.04}s, box-shadow 0.2s, border-color 0.2s`;
+  observer.observe(card);
+});
+</script>
+</body>
+</html>
